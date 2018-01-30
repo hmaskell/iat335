@@ -6,8 +6,9 @@ var max = maximum(data);
 
 
 var min = minimum(data);
+
+var sum = sum(data);
 /*
-var sum = sum(input, reference);
 var count = count(input, reference);
 var avg = avg(sum, count);
 */
@@ -16,10 +17,16 @@ console.log("The final maximum value is "+max);
 
 
 console.log("The minimum value is "+min);
-/*
 console.log("The sum of <insert specific input> is "+sum);
+/*
 console.log("The count of <insert specific input> is "+count);
 console.log("The average value is "+avg);
+
+
+d3.json("data/top-rated-movies-01.json", function(json){
+	console.log(json);
+});
+
 */
 
 function maximum(data){
@@ -44,16 +51,18 @@ function minimum(data){
 	return min;
 }
 
-/*
 
 
-function sum(var input_dimension, var reference_dimension){
+
+function sum(data){
 	var sum = 0;
-	if (input_dimension == reference_dimension){
-		sum += input_dimension;
+	for (var i=0; i<arrayLength; i++){
+		sum += data[i];
 	}
 	return sum;
 }
+
+/*
 
 function avg(var sum, var count){
 	var avg = sum/count;
