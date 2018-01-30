@@ -1,27 +1,23 @@
 var data=[0,3,8,2,60,1,2,2];
+//var json = readFile("file://../data/top-rated-movies-01.json");
 var arrayLength = data.length;
 
 var max = maximum(data);
-
-
-
 var min = minimum(data);
-
 var sum = sum(data);
-/*
-var count = count(input, reference);
-var avg = avg(sum, count);
-*/
+var avg = avg(sum, arrayLength);
+var count = count(data, "2");
+
 
 console.log("The final maximum value is "+max);
 
 
 console.log("The minimum value is "+min);
-console.log("The sum of <insert specific input> is "+sum);
-/*
-console.log("The count of <insert specific input> is "+count);
-console.log("The average value is "+avg);
+console.log("The sum of all data values is "+sum);
 
+console.log("The count of '2' is "+count);
+console.log("The average value is "+avg);
+/*
 
 d3.json("data/top-rated-movies-01.json", function(json){
 	console.log(json);
@@ -29,12 +25,31 @@ d3.json("data/top-rated-movies-01.json", function(json){
 
 */
 
+//reference: https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file
+/*function readFile(filename){
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", filename, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+}
+*/
+
 function maximum(data){
 	var max = -1;
 	for (var i=0; i<arrayLength; i++){
 		if (data[i] >= max){
 			max = data[i];
-			console.log("The new maximum value is "+max);
+			//console.log("The new maximum value is "+max);
 		}
 	}
 	return max;
@@ -45,13 +60,11 @@ function minimum(data){
 	for (var i=0; i<arrayLength; i++){
 		if (data[i] <= min){
 			min = data[i];
-			console.log("The new minimum value is "+min);
+			//console.log("The new minimum value is "+min);
 		}
 	}
 	return min;
 }
-
-
 
 
 function sum(data){
@@ -62,18 +75,19 @@ function sum(data){
 	return sum;
 }
 
-/*
 
-function avg(var sum, var count){
-	var avg = sum/count;
+
+function avg(sum, length){
+	var avg = sum/length;
 	return avg;
 }
 
-function count(var input_dimension, var reference_dimension){
+function count(data, value){
 	var count = 0;
-	if (input_dimension == reference_dimension){
-		count++;
+	for (var i=0; i<arrayLength; i++){
+		if (data[i] == value){
+			count++;
+		}
 	}
 	return count;
 } 
-*/
