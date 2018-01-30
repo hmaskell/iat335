@@ -1,12 +1,23 @@
-var data=[0,3,8,2,60,1,2,2];
 //var json = readFile("file://../data/top-rated-movies-01.json");
+var data=[0,3,8,2,60,1,2,2];
 var arrayLength = data.length;
+
+/*var arrayLength = data.length;*/
 
 var max = maximum(data);
 var min = minimum(data);
 var sum = sum(data);
 var avg = avg(sum, arrayLength);
 var count = count(data, "2");
+var dataset;
+d3.json("top-rated-movies-01",function(error,data){
+	if(error){
+		console.log(error);	
+	}else{
+		console.log(data);
+		dataset= data;
+	}
+});
 
 
 console.log("The final maximum value is "+max);
