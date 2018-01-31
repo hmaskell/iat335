@@ -9,8 +9,10 @@ var min = minimum(data);
 var sum = sum(data);
 var avg = avg(sum, arrayLength);
 var count = count(data, "2");
+
+
 var dataset;
-d3.json("top-rated-movies-01",function(error,data){
+d3.json("http://www.sfu.ca/~hmaskell/iat335/top-rated-movies-01.json",function(error,data){
 	if(error){
 		console.log(error);	
 	}else{
@@ -21,20 +23,17 @@ d3.json("top-rated-movies-01",function(error,data){
 
 
 console.log("The final maximum value is "+max);
-
-
 console.log("The minimum value is "+min);
 console.log("The sum of all data values is "+sum);
-
 console.log("The count of '2' is "+count);
 console.log("The average value is "+avg);
-/*
 
-d3.json("data/top-rated-movies-01.json", function(json){
+
+d3.json("http://www.sfu.ca/~hmaskell/iat335/top-rated-movies-01.json", function(json){
 	console.log(json);
 });
 
-*/
+
 
 //reference: https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file
 /*function readFile(filename){
