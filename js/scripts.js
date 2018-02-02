@@ -1,4 +1,4 @@
-d3.json("http://www.sfu.ca/~hmaskell/iat335/top-rated-movies-01.json",function(error,data){
+d3.json("http://www.sfu.ca/~hmaskell/iat335/movies_IMDB.json",function(error,data){
 	if(error){
 		console.log(error);	
 	}
@@ -9,14 +9,11 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/top-rated-movies-01.json",function(e
 			.enter()
 			.append("p")
 			.text(function(d){
-				if (d.originalTitle == "The Shawshank Redemption"){
-					return d.originalTitle+" "+d.imdbRating;
-				}
-				else if (d.originalTitle != ""){
-					return d.originalTitle+" "+d.imdbRating;
+				if (d.Title != ""){
+					return d.Title+" $"+d.US_Gross;
 				}
 				else{
-					return d.title+" "+d.imdbRating;
+					return d.Title+" $"+d.US_Gross;
 				}
 			}
 		);
@@ -42,19 +39,19 @@ function callMethods(dataset){
 function findmaximum(data){
 	var max = -1;
 	for (var i=0; i<data.length; i++){
-		if (data[i].imdbRating >= max){
-			max = data[i].imdbRating;
+		if (data[i].dimension >= max){
+			max = data[i].dimension;
 			//console.log("The new maximum value is "+max);
 		}
 	}
 	return max;
 }
 
-function findminimum(data){
+function findminimum(data, dimension){
 	var min = 10000;
 	for (var i=0; i<data.length; i++){
-		if (data[i].imdbRating <= min){
-			min = data[i].imdbRating;
+		if (data[i].dimension <= min){
+			min = data[i].dimension;
 			//console.log("The new minimum value is "+min);
 		}
 	}
@@ -62,10 +59,10 @@ function findminimum(data){
 }
 
 
-function findsum(data){
+function findsum(data, dimension){
 	var sum = 0;
 	for (var i=0; i<data.length; i++){
-		sum += data[i].imdbRating;
+		sum += data[i].dimension;
 	}
 	return sum;
 }
@@ -77,10 +74,10 @@ function findavg(sum, length){
 	return avg;
 }
 
-function findcount(data, value){
+function findcount(data, dimension, value){
 	var count = 0;
 	for (var i=0; i<data.length; i++){
-		if (data[i].imdbRating == value){
+		if (data[i].dimension == value){
 			count++;
 		}
 	}
