@@ -1,0 +1,19 @@
+h1{
+	font-family: 'Quicksand', sans-serif;
+	font-size: 2em;
+}
+
+h2{
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1.5em;
+	padding-bottom: 3rem;
+}
+
+p{
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1em;	
+}
+
+body{
+	padding: 1rem 3rem;
+}

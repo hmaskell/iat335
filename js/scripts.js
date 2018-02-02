@@ -23,24 +23,24 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/movies_IMDB.json",function(error,dat
 
 function callMethods(dataset){
 	var arrayLength = dataset.length;
-	var max = findmaximum(dataset);
-	var min = findminimum(dataset);
-	var sum = findsum(dataset);
-	var avg = findavg(sum, dataset.length);
-	var count = findcount(dataset, "8.3");
+	var max = findmaximum(dataset, "Production_Budget");
+	var min = findminimum(dataset, "IMDB_Rating");
+	var sum = findsum(dataset, "Worldwide_Gross");
+	var avg = findavg(findsum(dataset, "IMDB_Rating"), dataset.length);
+	var count = findcount(dataset, "MPAA_Rating", "R");
 
-	console.log("The final maximum rating is "+max);
-	console.log("The minimum rating is "+min);
-	console.log("The sum of all IMDB ratings is "+sum);
-	console.log("The count of '8.3' ratings is "+count);
-	console.log("The average rating is "+avg);
+	console.log("The maximum Production Budget is $"+max);
+	console.log("The minimum IMDB rating is "+min);
+	console.log("The sum of Worldwide Gross Income for all movies in the dataset is $"+sum);
+	console.log("The count of all R rated movies in the dataset is "+count);
+	console.log("The average IMDB rating is "+avg);
 }
 
-function findmaximum(data){
+function findmaximum(data, dimension){
 	var max = -1;
 	for (var i=0; i<data.length; i++){
-		if (data[i].dimension >= max){
-			max = data[i].dimension;
+		if ((data[i][dimension] != null) && (data[i][dimension] >= max)){
+			max = data[i][dimension];
 			//console.log("The new maximum value is "+max);
 		}
 	}
@@ -50,9 +50,9 @@ function findmaximum(data){
 function findminimum(data, dimension){
 	var min = 10000;
 	for (var i=0; i<data.length; i++){
-		if (data[i].dimension <= min){
-			min = data[i].dimension;
-			//console.log("The new minimum value is "+min);
+		if ((data[i][dimension] != null) && (data[i][dimension] < min)){
+			min = data[i][dimension];
+			console.log("The new minimum value is "+min);
 		}
 	}
 	return min;
@@ -62,7 +62,9 @@ function findminimum(data, dimension){
 function findsum(data, dimension){
 	var sum = 0;
 	for (var i=0; i<data.length; i++){
-		sum += data[i].dimension;
+		if (data[i][dimension] != null){
+			sum += data[i][dimension];
+		}
 	}
 	return sum;
 }
@@ -70,14 +72,19 @@ function findsum(data, dimension){
 
 
 function findavg(sum, length){
-	var avg = sum/length;
+	var avg = "not yet calculated";
+	if ((sum != null) && (length != null)){
+		var avg = sum/length;
+		avg = Math.round( avg * 10 ) / 10;
+		/*reference: https://stackoverflow.com/questions/7342957/how-do-you-round-to-1-decimal-place-in-javascript*/
+	}
 	return avg;
 }
 
 function findcount(data, dimension, value){
 	var count = 0;
 	for (var i=0; i<data.length; i++){
-		if (data[i].dimension == value){
+		if (data[i][dimension] == value){
 			count++;
 		}
 	}
