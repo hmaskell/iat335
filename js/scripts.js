@@ -18,6 +18,11 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/top-rated-movies-01.json",function(e
 	}else{
 		console.log(data);
 		dataset= data;
+	/*	d3.select("body").selectAll("p")
+			.data(dataset)
+			.enter()
+			.append("p")
+			.text(function(d){return d.title+"  "+d.imdbRating;});*/
 	}
 });
 
