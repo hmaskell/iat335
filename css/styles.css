@@ -17,3 +17,13 @@ p{
 body{
 	padding: 1rem 3rem;
 }
+
+div.bar{
+	display: inline-block;
+	width: 10px;
+	height: 75px;
+	margin-right: 4px;
+	background-color: yellow;
+
+
+}
