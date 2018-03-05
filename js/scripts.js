@@ -32,7 +32,7 @@ function callMethods(dataset){
 	var whichList = findWhich(dataset, "Production_Budget", "218");
 
 	console.log("The maximum value is is "+max);
-	//console.log("The minimum value is "+min);
+	console.log("The minimum value is "+min);
 	//console.log("The sum of Worldwide Gross Income for all movies in the dataset is $"+sum);
 	//console.log("The count of all R rated movies in the dataset is "+count);
 	//console.log("The average is "+avg);
@@ -178,3 +178,4 @@ function convertDate(date){
 	}
 	return fourDigitYear;
 }
+
