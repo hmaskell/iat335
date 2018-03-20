@@ -1,4 +1,4 @@
-d3.json("http://www.sfu.ca/~hmaskell/iat335/movies_IMDB.json",function(error,data){
+d3.json("http://www.sfu.ca/~hmaskell/iat335/movies-stats.json",function(error,data){
 	if(error){
 		console.log(error);	
 	}
@@ -9,11 +9,8 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/movies_IMDB.json",function(error,dat
 			.enter()
 			.append("p")
 			.text(function(d){
-				if (d.Title != ""){
-					return d.Title+" $"+d.US_Gross;
-				}
-				else{
-					return d.Title+" $"+d.US_Gross;
+				if (d.Distributor != ""){
+					return d.Title+" - "+d.Distributor;
 				}
 			}
 		);
@@ -21,23 +18,43 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/movies_IMDB.json",function(error,dat
 	}
 });
 
+// d3.json("http://www.sfu.ca/~hmaskell/iat335/movies-capitol.json",function(error,data){
+// 	if(error){
+// 		console.log(error);	
+// 	}
+// 	else{
+// 		console.log(data);
+// 		d3.select("body").selectAll("p")
+// 			.data(data)
+// 			.enter()
+// 			.append("p")
+// 			.text(function(d){
+// 				if (d.US_Gross != ""){
+// 					return d.Title+" $"+d.US_Gross;
+// 				}
+// 			}
+// 		);
+// 		callMethods(data);
+// 	}
+// });
+
 function callMethods(dataset){
 	var arrayLength = dataset.length;
-	var max = findmaximum(dataset, "Release_Date");
+	var max = findmaximum(dataset, "US_Gross");
 	var min = findminimum(dataset, "Release_Date");
 	var sum = findsum(dataset, "Worldwide_Gross");
 	var avg = findavg(findsum(dataset, "Production_Budget"), dataset.length);
 	var count = findcount(dataset, "MPAA_Rating", "R");
 	var list = listAll(dataset, "Major_Genre");
-	var whichList = findWhich(dataset, "Production_Budget", "218");
+	var whichList = findWhich(dataset, "US_Gross", "760167650");
 
 	console.log("The maximum value is is "+max);
-	console.log("The minimum value is "+min);
+	//console.log("The minimum value is "+min);
 	//console.log("The sum of Worldwide Gross Income for all movies in the dataset is $"+sum);
 	//console.log("The count of all R rated movies in the dataset is "+count);
 	//console.log("The average is "+avg);
 	//console.log("The list is as follows: "+list);
-	//console.log("The list of items that match the parameters includes: "+whichList);
+	console.log("The list of items that match the parameters includes: "+whichList);
 }
 
 function findmaximum(data, dimension){
