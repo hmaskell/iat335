@@ -1,10 +1,10 @@
-d3.json("http://www.sfu.ca/~hmaskell/iat335/movies-stats.json",function(error,data_stats){
+/*d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean.json",function(error,data_stats){
 	if(error){
 		console.log(error);	
 	}
 	else{
 		console.log(data_stats);
-		d3.select("body").selectAll("p")
+		d3.select("#area1")
 			.data(data_stats)
 			.enter()
 			.append("p")
@@ -18,25 +18,25 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/movies-stats.json",function(error,da
 	}
 });
 
-// d3.json("http://www.sfu.ca/~hmaskell/iat335/movies-capitol.json",function(error,data_capitol){
-// 	if(error){
-// 		console.log(error);	
-// 	}
-// 	else{
-// 		console.log(data_capitol);
-// 		d3.select("body").selectAll("p")
-// 			.data(data_capitol)
-// 			.enter()
-// 			.append("p")
-// 			.text(function(d){
-// 				if (d.US_Gross != ""){
-// 					return d.Title+" $"+d.US_Gross;
-// 				}
-// 			}
-// 		);
-// 		callMethods(data_capitol);
-// 	}
-// });
+d3.json("http://www.sfu.ca/~hmaskell/iat335/capitol-movies-clean.json",function(error,data_capitol){
+	if(error){
+		console.log(error);	
+	}
+	else{
+		console.log(data_capitol);
+		d3.select("#area2")
+			.data(data_capitol)
+			.enter()
+			.append("p")
+			.text(function(d){
+				if (d.US_Gross != ""){
+					return d.Title+" $"+d.US_Gross;
+				}
+			}
+		);
+		callMethods(data_capitol);
+	}
+});*/
 
 function callMethods(dataset){
 	var arrayLength = dataset.length;
