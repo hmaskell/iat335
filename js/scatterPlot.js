@@ -5,30 +5,31 @@ var svgWidth = 1700;               //determines width size of new svg
 var svgHeight = 1500;
 var padding = 50;	
 var h = 200;
+var radius = 4;
+var width = 8;
+var height = 8;
 
 
 d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,statsdata){
+	d3.json("http://www.sfu.ca/~hmaskell/iat335/capitol-movies-clean",function(error,capitoldata){
 	if(error){
 		console.log("There was an error")
 	} else{	
+
+		data = [statsdata,capitoldata];
 		
 		//create variables to scale the x and y dimensions
 		var xScale = d3.scaleLinear()
-							.domain([0, d3.max(statsdata, function(d) { return d["IMDB_Votes"];})])
+							.domain([0, d3.max(capitoldata, function(d) { return d["US_Gross"];})])
 							.range([padding, svgWidth - padding]);  
-
-		//scales the radius of each circle					
-		var rScale = d3.scaleLinear()
-							.domain([0, d3.max(statsdata, function(d){ return d["IMDB_Rating"];})])	
-							.range ([1,7]);		
 
 		var	yScaleIMDB = d3.scaleLinear()
 							.domain([0, d3.max(statsdata, function(d) { return d["IMDB_Rating"]; })])
-							.range([svgHeight - padding, padding]);                                 //output range will have 50 pixels of space around the edges
+							.range([svgHeight - padding, padding]);     //output range will have 50 pixels of space around the edges
 
 		var	yScaleRT = d3.scaleLinear()
 							.domain([0, d3.max(statsdata, function(d) { return d["Rotten_Tomatoes_Rating"]; })])
-							.range([svgHeight - padding, padding]);                                 //output range will have 50 pixels of space around the edges
+							.range([svgHeight - padding, padding]);     //output range will have 50 pixels of space around the edges
 
 				
 		//Define the x axis, orientation and number of ticks					
@@ -52,38 +53,37 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 
 		//create a circle at each of the data points
 		svg.selectAll("circle")
-			.data(statsdata)
+			.data(capitoldata)
 			.enter()
 			.append("circle")
 			.attr("cx", function(d){
-				return xScale(d["IMDB_Votes"]);
-			})
-			.attr("cy", function(d){
-				return yScaleIMDB(d["IMDB_Rating"]);
-			})
-			.attr("r", function(d){
-				return rScale(d["IMDB_Rating"]);
+				return xScale(d["US_Gross"]);
 			})	
+			.data(statsdata)
+			.attr("cy", function(d){
+				return yScaleRT(d["Rotten_Tomatoes_Rating"]);
+			})
+			.attr("r", radius);
 						
 			
 		
-
-/*		svg.selectAll("rect")
-			.data(statsdata)
+		//create a rect at each of the data points
+		svg.selectAll("rect")
+			.data(capitoldata)
 			.enter()
 			.append("rect")
 			.attr("rx", function(d){
-				return xScale(d["Rotten_Tomatoes_Rating"]);
+				return xScale(d["US_Gross"]);
 			})
-			.attr("ry", function(d){
-				return yScaleRT(d["Rotten_Tomatoes_Rating"]);
+			.data(statsdata)
+			.attr("cy", function(d){
+				return yScaleIMDB(d["IMDB_Rating"]);
 			})
-			.attr("r", function(d){
-				return rScale(d["Rotten_Tomatoes_Rating"]);
-			})*/	
+			.attr("width", width)
+			.attr("height", height);
+/*
 
-
-			  .on("mouseover", function(d) {
+		.on("mouseover", function(d) {
 
 					//Get this bar's x/y values, then augment for the tooltip
 					var xPosition = parseFloat(d3.select(this).attr("x"));
@@ -115,7 +115,7 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 			   });		
 		
 		   	   
-
+*/
 
 			  		
 		// creates a svg element for the x axis	
@@ -131,4 +131,5 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 
 
 	}
+})
 })
