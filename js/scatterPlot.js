@@ -64,8 +64,26 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 			.attr("r", function(d){
 				return rScale(d["IMDB_Rating"]);
 			})	
+						
+			
+		
 
-			   .on("mouseover", function(d) {
+/*		svg.selectAll("rect")
+			.data(statsdata)
+			.enter()
+			.append("rect")
+			.attr("rx", function(d){
+				return xScale(d["Rotten_Tomatoes_Rating"]);
+			})
+			.attr("ry", function(d){
+				return yScaleRT(d["Rotten_Tomatoes_Rating"]);
+			})
+			.attr("r", function(d){
+				return rScale(d["Rotten_Tomatoes_Rating"]);
+			})*/	
+
+
+			  .on("mouseover", function(d) {
 
 					//Get this bar's x/y values, then augment for the tooltip
 					var xPosition = parseFloat(d3.select(this).attr("x"));
@@ -88,13 +106,13 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 					d3.select("#tooltip").classed("hidden", true);
 					
 			   })
-/*
+
 			   .on("mouseout", function(d) {
 				   d3.select(this)
 				   		.transition()
 				   		.duration(250)
 						.attr("fill", "rgb(0, 0, " + (d * 10) + ")");
-			   });*/		
+			   });		
 		
 		   	   
 

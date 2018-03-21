@@ -27,7 +27,7 @@ div.bar{
 }
 
 circle:hover{
-	fill: yellow;
+	fill: red;
 
 }
 
@@ -36,8 +36,13 @@ circle{
 	-o-transition: all 0.2s;
 	-webkit-transition: all 0.2s;
 	transition: all 0.2s;
+	fill: none;
+	stroke-width: 2px;
+	stroke:black;
 
 }
+
+
 
 #tooltip {
 				position: absolute;
