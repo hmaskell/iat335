@@ -19,7 +19,7 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 
 		//scales the radius of each circle					
 		var rScale = d3.scaleLinear()
-							.domain([0, d3.max(data, function(d){ return d["IMDB_Rating"];})])	
+							.domain([0, d3.max(statsdata, function(d){ return d["IMDB_Rating"];})])	
 							.range ([1,7]);		
 
 		var	yScaleIMDB = d3.scaleLinear()
