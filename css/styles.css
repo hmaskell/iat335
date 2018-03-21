@@ -31,6 +31,11 @@ circle:hover{
 
 }
 
+rect:hover{
+	fill: yellow;
+
+}
+
 circle{
 	-moz-transition: all 0.2s;
 	-o-transition: all 0.2s;
@@ -41,6 +46,19 @@ circle{
 	stroke:black;
 
 }
+
+rect{
+	-moz-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+	fill: none;
+	stroke-width: 2px;
+	stroke:black;
+
+}
+
+
 
 
 

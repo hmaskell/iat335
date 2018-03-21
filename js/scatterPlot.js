@@ -72,13 +72,14 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 			.data(capitoldata)
 			.enter()
 			.append("rect")
-			.attr("rx", function(d){
+			.attr("x", function(d){
 				return xScale(d["US_Gross"]);
 			})
 			.data(statsdata)
-			.attr("cy", function(d){
+			.attr("y", function(d){
 				return yScaleIMDB(d["IMDB_Rating"]);
 			})
+			
 			.attr("width", width)
 			.attr("height", height)
 
