@@ -14,6 +14,33 @@ p{
 	font-size: 1em;	
 }
 
+nav a{
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1.2em;	
+	font-weight: 500;
+	color: #007fab;
+	background-color: #ffffff;
+	border-color: #007fab;
+	border-width: 1px;
+	border-radius: 7px;
+	border: solid;
+	padding: .5rem 1rem;
+	margin-right: 2rem;
+}
+
+nav a:hover{
+	-moz-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+	color: #ffffff;
+	background-color: #007fab;
+}
+
+a:hover, a:visited, a:link, a:active{
+    text-decoration: none;
+}
+
 body{
 	padding: 1rem 3rem;
 }
@@ -28,12 +55,10 @@ div.bar{
 
 circle:hover{
 	fill: red;
-
 }
 
 rect:hover{
 	fill: yellow;
-
 }
 
 circle{
@@ -44,7 +69,6 @@ circle{
 	fill: none;
 	stroke-width: 2px;
 	stroke:black;
-
 }
 
 rect{
@@ -58,32 +82,28 @@ rect{
 
 }
 
-
-
-
-
 #tooltip {
-				position: absolute;
-				width: 200px;
-				height: auto;
-				padding: 10px;
-				background-color: white;
-				-webkit-border-radius: 10px;
-				-moz-border-radius: 10px;
-				border-radius: 10px;
-				-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-				-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-				box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-				pointer-events: none;
-			}
-			
-			#tooltip.hidden {
-				display: none;
-			}
-			
-			#tooltip p {
-				margin: 0;
-				font-family: sans-serif;
-				font-size: 16px;
-				line-height: 20px;
-			}
+	position: absolute;
+	width: 200px;
+	height: auto;
+	padding: 10px;
+	background-color: white;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	pointer-events: none;
+}
+
+#tooltip.hidden {
+	display: none;
+}
+
+#tooltip p {
+	margin: 0;
+	font-family: sans-serif;
+	font-size: 16px;
+	line-height: 20px;
+}

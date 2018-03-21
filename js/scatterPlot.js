@@ -15,8 +15,6 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 	if(error){
 		console.log("There was an error")
 	} else{	
-
-		data = [statsdata,capitoldata];
 		
 		//create variables to scale the x and y dimensions
 		var xScale = d3.scaleLinear()

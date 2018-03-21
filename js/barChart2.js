@@ -4,6 +4,12 @@ var h = 250;
 	var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
 							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
 
+d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,statsdata){
+	d3.json("http://www.sfu.ca/~hmaskell/iat335/capitol-movies-clean",function(error,capitoldata){
+	if(error){
+		console.log("There was an error")
+	} else{	
+
 			var xScale = d3.scaleBand()
 							.domain(d3.range(dataset.length))
 							.rangeRound([0, w])
@@ -14,7 +20,7 @@ var h = 250;
 							.range([0, h]);
 			
 			//Create SVG element
-			var svg = d3.select("body")
+			var svg = d3.select("#area2")
 						.append("svg")
 						.attr("width", w)
 						.attr("height", h);
@@ -67,4 +73,7 @@ var h = 250;
 			   .attr("font-size", "11px")
 			   .attr("fill", "white");
 			
+	}
+})
+})
 
