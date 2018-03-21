@@ -80,8 +80,8 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 				return yScaleIMDB(d["IMDB_Rating"]);
 			})
 			.attr("width", width)
-			.attr("height", height);
-/*
+			.attr("height", height)
+
 
 		.on("mouseover", function(d) {
 
@@ -115,7 +115,7 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 			   });		
 		
 		   	   
-*/
+
 
 			  		
 		// creates a svg element for the x axis	
