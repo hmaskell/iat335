@@ -61,8 +61,52 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 			.attr("cy", function(d){
 				return yScaleRT(d["Rotten_Tomatoes_Rating"]);
 			})
-			.attr("r", radius);
-						
+			.attr("r", radius)
+			
+			.on("mouseover", function(d) {
+
+				//Get this bar's x/y values, then augment for the tooltip
+/*				var xPosition = parseFloat(d3.select(this).attr("x"));
+				var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;*/
+
+				//Update the tooltip position and value
+				d3.select("#tooltip")
+/*					.style("left", xPosition + "px")
+					.style("top", yPosition + "px")*/
+
+					.select("#Title")
+					.text(d["Title"])
+
+					// .select("#IMDB_R")
+					// .text(d["IMDB_Rating"])
+
+					// .select("#RT_R")
+					// .text(d["Rotten_Tomatoes_Rating"])
+
+					// .select("#US_Gross")
+					// .text(d["US_Gross"])
+
+					// .select("#Source")
+					// .text(d["Source"])
+					;
+		   
+				//Show the tooltip
+				d3.select("#tooltip").classed("hidden", false);
+
+			   })
+			   .on("mouseout", function() {
+			   
+					//Hide the tooltip
+					d3.select("#tooltip").classed("hidden", true);
+					
+			   })
+
+			   .on("mouseout", function(d) {
+				   d3.select(this)
+				   		.transition()
+				   		.duration(250)
+						.attr("fill", "rgb(0, 0, " + (d * 10) + ")");
+			   });					
 			
 		
 		//create a rect at each of the data points
@@ -84,13 +128,13 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 			.on("mouseover", function(d) {
 
 				//Get this bar's x/y values, then augment for the tooltip
-				var xPosition = parseFloat(d3.select(this).attr("x"));
-				var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;
+/*				var xPosition = parseFloat(d3.select(this).attr("x"));
+				var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;*/
 
 				//Update the tooltip position and value
 				d3.select("#tooltip")
-					.style("left", xPosition + "px")
-					.style("top", yPosition + "px")
+/*					.style("left", xPosition + "px")
+					.style("top", yPosition + "px")*/
 
 					.select("#Title")
 					.text(d["Title"])

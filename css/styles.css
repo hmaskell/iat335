@@ -83,7 +83,8 @@ rect{
 }
 
 #tooltip {
-	position: absolute;
+	position: fixed;
+	right:40px;
 	width: 200px;
 	height: auto;
 	padding: 10px;
