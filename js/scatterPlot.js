@@ -4,6 +4,7 @@
 var svgWidth = 1700;                                                                 //determines width size of new svg
 var svgHeight = 1500;
 var padding = 50;	
+var h = 200;
 
 
 d3.json("http://www.sfu.ca/~hmaskell/iat335/movies_IMDB.json",function(error,data){
@@ -24,7 +25,7 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/movies_IMDB.json",function(error,dat
 		//scales the radius of each circle					
 		var rScale = d3.scaleLinear()
 							.domain([0, d3.max(data, function(d){ return d["IMDB_Rating"];})])	
-							.range ([1,5]);		
+							.range ([1,7]);		
 
 		//Define the x axis, orientation and number of ticks					
 		var xAxis = d3.axisBottom()
@@ -42,6 +43,9 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/movies_IMDB.json",function(error,dat
 					.attr("width", svgWidth)
 					.attr("height", svgHeight);
 
+
+		 	
+
 		//create a circle at each of the data points
 		svg.selectAll("circle")
 			.data(data)
@@ -55,8 +59,43 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/movies_IMDB.json",function(error,dat
 			})
 			.attr("r", function(d){
 				return rScale(d["IMDB_Rating"]);
-			})			
+			})	
+
+			   .on("mouseover", function(d) {
+
+					//Get this bar's x/y values, then augment for the tooltip
+					var xPosition = parseFloat(d3.select(this).attr("x"));
+					var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;
+
+					//Update the tooltip position and value
+					d3.select("#tooltip")
+						.style("left", xPosition + "px")
+						.style("top", yPosition + "px")						
+						.select("#Title")
+						.text(d);
+			   
+					//Show the tooltip
+					d3.select("#tooltip").classed("hidden", false);
+
+			   })
+			   .on("mouseout", function() {
+			   
+					//Hide the tooltip
+					d3.select("#tooltip").classed("hidden", true);
+					
+			   })
+/*
+			   .on("mouseout", function(d) {
+				   d3.select(this)
+				   		.transition()
+				   		.duration(250)
+						.attr("fill", "rgb(0, 0, " + (d * 10) + ")");
+			   });*/		
 		
+		   	   
+
+
+			  		
 		// creates a svg element for the x axis	
 		svg.append("g")
 				.attr("class","axis")
