@@ -1,11 +1,11 @@
-d3.json("http://www.sfu.ca/~hmaskell/iat335/movies-stats.json",function(error,data){
+d3.json("http://www.sfu.ca/~hmaskell/iat335/movies-stats.json",function(error,data_stats){
 	if(error){
 		console.log(error);	
 	}
 	else{
-		console.log(data);
+		console.log(data_stats);
 		d3.select("body").selectAll("p")
-			.data(data)
+			.data(data_stats)
 			.enter()
 			.append("p")
 			.text(function(d){
@@ -14,18 +14,18 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/movies-stats.json",function(error,da
 				}
 			}
 		);
-		callMethods(data);
+		callMethods(data_stats);
 	}
 });
 
-// d3.json("http://www.sfu.ca/~hmaskell/iat335/movies-capitol.json",function(error,data){
+// d3.json("http://www.sfu.ca/~hmaskell/iat335/movies-capitol.json",function(error,data_capitol){
 // 	if(error){
 // 		console.log(error);	
 // 	}
 // 	else{
-// 		console.log(data);
+// 		console.log(data_capitol);
 // 		d3.select("body").selectAll("p")
-// 			.data(data)
+// 			.data(data_capitol)
 // 			.enter()
 // 			.append("p")
 // 			.text(function(d){
@@ -34,7 +34,7 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/movies-stats.json",function(error,da
 // 				}
 // 			}
 // 		);
-// 		callMethods(data);
+// 		callMethods(data_capitol);
 // 	}
 // });
 
@@ -44,14 +44,14 @@ function callMethods(dataset){
 	var min = findminimum(dataset, "Release_Date");
 	var sum = findsum(dataset, "Worldwide_Gross");
 	var avg = findavg(findsum(dataset, "Production_Budget"), dataset.length);
-	var count = findcount(dataset, "MPAA_Rating", "R");
+	var count = findcount(dataset, "Title", "12 Angry Men");
 	var list = listAll(dataset, "Major_Genre");
 	var whichList = findWhich(dataset, "US_Gross", "760167650");
 
 	console.log("The maximum value is is "+max);
 	//console.log("The minimum value is "+min);
 	//console.log("The sum of Worldwide Gross Income for all movies in the dataset is $"+sum);
-	//console.log("The count of all R rated movies in the dataset is "+count);
+	console.log("The count of all 12 Angry Men in the dataset is "+count);
 	//console.log("The average is "+avg);
 	//console.log("The list is as follows: "+list);
 	console.log("The list of items that match the parameters includes: "+whichList);
