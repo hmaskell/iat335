@@ -9,16 +9,6 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 		console.log("There was an error")
 	} else{	
 
-				//create variables to scale the x and y dimensions
-/*			var xScale = d3.scaleBand()
-							.domain([0, d3.max(capitoldata, function(d) { return d["US_Gross"];})])
-							.rangeRound([0, w])
-							.paddingInner(0.05);
-
-			var yScale = d3.scaleLinear()
-							.domain([0, d3.max(statsdata, function(d) { return d["Source"]; })])
-							.range([0, h]);*/
-
 			var xScale = d3.scaleBand()
 							.domain(d3.range(dataset.length))
 							.rangeRound([0, w])

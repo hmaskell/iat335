@@ -124,7 +124,7 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 
 				})
 
-				.on("mouseout", function() {
+/*				.on("mouseout", function() {
 				   
 					//Hide the tooltip
 					d3.select("#tooltip").classed("hidden", true);
@@ -136,7 +136,7 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 				   		.transition()
 				   		.duration(250)
 						.attr("fill", "rgb(0, 0, " + (d * 10) + ")");
-				});		
+				});	*/	
 			  		
 			// creates a svg element for the x axis	
 			svg.append("g")
