@@ -62,7 +62,7 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 				return yScaleRT(d["Rotten_Tomatoes_Rating"]);
 			})
 			.attr("r", radius)
-			
+						
 			.on("mouseover", function(d) {
 
 				//Get this bar's x/y values, then augment for the tooltip
@@ -75,40 +75,21 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 					.style("top", yPosition + "px")*/
 
 					.select("#Title")
-					.text(d["Title"])
+					.text(d["Title"]);
 
-					// .select("#IMDB_R")
-					// .text(d["IMDB_Rating"])
+				d3.select("#tooltip")
+					.select("#IMDB_R")
+					.text(d["IMDB_Rating"]);
 
-					// .select("#RT_R")
-					// .text(d["Rotten_Tomatoes_Rating"])
+				d3.select("#tooltip")
+					.select("#RT_R")
+					.text(d["Rotten_Tomatoes_Rating"]);
 
-					// .select("#US_Gross")
-					// .text(d["US_Gross"])
+				d3.select("#tooltip")
+					.select("#Source")
+					.text(d["Source"]);
+		})
 
-					// .select("#Source")
-					// .text(d["Source"])
-					;
-		   
-				//Show the tooltip
-				d3.select("#tooltip").classed("hidden", false);
-
-			   })
-			   .on("mouseout", function() {
-			   
-					//Hide the tooltip
-					d3.select("#tooltip").classed("hidden", true);
-					
-			   })
-
-			   .on("mouseout", function(d) {
-				   d3.select(this)
-				   		.transition()
-				   		.duration(250)
-						.attr("fill", "rgb(0, 0, " + (d * 10) + ")");
-			   });					
-			
-		
 		//create a rect at each of the data points
 		svg.selectAll("rect")
 			.data(capitoldata)
@@ -137,20 +118,19 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 					.style("top", yPosition + "px")*/
 
 					.select("#Title")
-					.text(d["Title"])
+					.text(d["Title"]);
 
-					// .select("#IMDB_R")
-					// .text(d["IMDB_Rating"])
+				d3.select("#tooltip")
+					.select("#IMDB_R")
+					.text(d["IMDB_Rating"]);
 
-					// .select("#RT_R")
-					// .text(d["Rotten_Tomatoes_Rating"])
+				d3.select("#tooltip")
+					.select("#RT_R")
+					.text(d["Rotten_Tomatoes_Rating"]);
 
-					// .select("#US_Gross")
-					// .text(d["US_Gross"])
-
-					// .select("#Source")
-					// .text(d["Source"])
-					;
+				d3.select("#tooltip")
+					.select("#Source")
+					.text(d["Source"]);
 		   
 				//Show the tooltip
 				d3.select("#tooltip").classed("hidden", false);
