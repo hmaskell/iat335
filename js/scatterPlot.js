@@ -33,7 +33,7 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 		//Define the x axis, orientation and number of ticks					
 		var xAxis = d3.axisBottom()
 			.scale(xScale)
-			.ticks(10);	
+			.ticks(20);	
 		
 		//Define the y axis, orientation and number of ticks						
 		var yAxis = d3.axisLeft()
