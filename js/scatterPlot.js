@@ -1,7 +1,7 @@
 //REFERENCE USED: Interactive Design and Visualizations by Scott Murray
 
 //values for svg element
-var svgWidth = 1700;               //determines width size of new svg
+var svgWidth = 1200;               //determines width size of new svg
 var svgHeight = 1500;
 var padding = 50;	
 var h = 200;
@@ -32,19 +32,23 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 				
 		//Define the x axis, orientation and number of ticks					
 		var xAxis = d3.axisBottom()
-							.scale(xScale)
-							.ticks(10);	
+			.scale(xScale)
+			.ticks(10);	
 		
 		//Define the y axis, orientation and number of ticks						
 		var yAxis = d3.axisLeft()
-							.scale(yScaleIMDB)
-							.ticks(9);
+			.scale(yScaleIMDB)
+			.ticks(9);
+
+		var yAxis2 = d3.axisRight()
+			.scale(yScaleRT)
+			.ticks(9);
 
 		//create the svg element					
 		var svg = d3.select("#area1")
-					.append("svg")
-					.attr("width", svgWidth)
-					.attr("height", svgHeight);
+			.append("svg")
+			.attr("width", svgWidth)
+			.attr("height", svgHeight);
 
 
 		 	
@@ -156,15 +160,19 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 			  		
 		// creates a svg element for the x axis	
 		svg.append("g")
-				.attr("class","axis")
-				.attr("transform", "translate(0," + (svgHeight-padding) + ")")
-				.call(xAxis);
+			.attr("class","axis")
+			.attr("transform", "translate(0," + (svgHeight-padding) + ")")
+			.call(xAxis);
 
 		svg.append("g")
-				.attr("class","axis")
-				.attr("transform", "translate(" + padding +  ",0)")
-				.call(yAxis);		
+			.attr("class","axis")
+			.attr("transform", "translate(" + padding +  ",0)")
+			.call(yAxis);		
 
+		svg.append("g")
+			.attr("class","axis")
+			.attr("transform", "translate(" + 1170 + ",0)")
+			.call(yAxis2);	
 
 	}
 })

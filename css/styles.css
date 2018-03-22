@@ -5,13 +5,18 @@ h1{
 
 h2{
 	font-family: 'Quicksand', sans-serif;
-	font-size: 1.5em;
-	padding-bottom: 3rem;
+	font-size: 1.3em;
+	padding-bottom: 1rem;
 }
 
 p{
 	font-family: 'Quicksand', sans-serif;
 	font-size: 1em;	
+}
+
+nav {
+	margin: 4rem 0 6rem;
+
 }
 
 nav a{
