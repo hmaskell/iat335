@@ -1,13 +1,13 @@
 //REFERENCE USED: Interactive Design and Visualizations by Scott Murray
 
 //values for svg element
-var svgWidth = 1200;               //determines width size of new svg
+var svgWidth = 1200;  
 var svgHeight = 1500;
 var padding = 50;	
 var h = 200;
-var radius = 4;
-var width = 8;
-var height = 8;
+var radius = 4; //used for the radius of circular plot points
+var width = 8; //used for the width of rect plot points
+var height = 8; //used for the height of rect plot points
 
 
 d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,statsdata){
@@ -18,16 +18,16 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 		
 		//create variables to scale the x and y dimensions
 		var xScale = d3.scaleLinear()
-							.domain([0, d3.max(capitoldata, function(d) { return d["US_Gross"];})])
-							.range([padding, svgWidth - padding]);  
+			.domain([0, d3.max(capitoldata, function(d) { return d["US_Gross"];})])
+			.range([padding, svgWidth - padding]);  
 
 		var	yScaleIMDB = d3.scaleLinear()
-							.domain([0, d3.max(statsdata, function(d) { return d["IMDB_Rating"]; })])
-							.range([svgHeight - padding, padding]);     //output range will have 50 pixels of space around the edges
+			.domain([0, d3.max(statsdata, function(d) { return d["IMDB_Rating"]; })])
+			.range([svgHeight - padding, padding]);     //output range will have 50 pixels of space around the edges
 
 		var	yScaleRT = d3.scaleLinear()
-							.domain([0, d3.max(statsdata, function(d) { return d["Rotten_Tomatoes_Rating"]; })])
-							.range([svgHeight - padding, padding]);     //output range will have 50 pixels of space around the edges
+			.domain([0, d3.max(statsdata, function(d) { return d["Rotten_Tomatoes_Rating"]; })])
+			.range([svgHeight - padding, padding]);     //output range will have 50 pixels of space around the edges
 
 				
 		//Define the x axis, orientation and number of ticks					
@@ -51,129 +51,109 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 			.attr("height", svgHeight);
 
 
-		 	
+			//create a circle at each of the data points
+			svg.selectAll("circle")
+				.data(capitoldata)
+				.enter()
+				.append("circle")
+				.attr("cx", function(d){
+					return xScale(d["US_Gross"]);
+				})	
+				.data(statsdata)
+				.attr("cy", function(d){
+					return yScaleRT(d["Rotten_Tomatoes_Rating"]);
+				})
+				.attr("r", radius)
+							
+				.on("mouseover", function(d) {
+					//Update the tooltip position and value
+					d3.select("#tooltip")
+						.select("#Title")
+						.text(d["Title"]);
 
-		//create a circle at each of the data points
-		svg.selectAll("circle")
-			.data(capitoldata)
-			.enter()
-			.append("circle")
-			.attr("cx", function(d){
-				return xScale(d["US_Gross"]);
-			})	
-			.data(statsdata)
-			.attr("cy", function(d){
-				return yScaleRT(d["Rotten_Tomatoes_Rating"]);
-			})
-			.attr("r", radius)
-						
-			.on("mouseover", function(d) {
+					d3.select("#tooltip")
+						.select("#IMDB_R")
+						.text(d["IMDB_Rating"]);
 
-				//Get this bar's x/y values, then augment for the tooltip
-/*				var xPosition = parseFloat(d3.select(this).attr("x"));
-				var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;*/
+					d3.select("#tooltip")
+						.select("#RT_R")
+						.text(d["Rotten_Tomatoes_Rating"]);
 
-				//Update the tooltip position and value
-				d3.select("#tooltip")
-/*					.style("left", xPosition + "px")
-					.style("top", yPosition + "px")*/
+					d3.select("#tooltip")
+						.select("#Source")
+						.text(d["Source"]);
+				})
 
-					.select("#Title")
-					.text(d["Title"]);
+			//create a rect at each of the data points
+			svg.selectAll("rect")
+				.data(capitoldata)
+				.enter()
+				.append("rect")
+				.attr("x", function(d){
+					return xScale(d["US_Gross"]);
+				})
+				.data(statsdata)
+				.attr("y", function(d){
+					return yScaleIMDB(d["IMDB_Rating"]);
+				})
+				
+				.attr("width", width)
+				.attr("height", height)
 
-				d3.select("#tooltip")
-					.select("#IMDB_R")
-					.text(d["IMDB_Rating"]);
+				.on("mouseover", function(d) {
 
-				d3.select("#tooltip")
-					.select("#RT_R")
-					.text(d["Rotten_Tomatoes_Rating"]);
+					//Update the tooltip position and value
+					d3.select("#tooltip")
+						.select("#Title")
+						.text(d["Title"]);
 
-				d3.select("#tooltip")
-					.select("#Source")
-					.text(d["Source"]);
-		})
+					d3.select("#tooltip")
+						.select("#IMDB_R")
+						.text(d["IMDB_Rating"]);
 
-		//create a rect at each of the data points
-		svg.selectAll("rect")
-			.data(capitoldata)
-			.enter()
-			.append("rect")
-			.attr("x", function(d){
-				return xScale(d["US_Gross"]);
-			})
-			.data(statsdata)
-			.attr("y", function(d){
-				return yScaleIMDB(d["IMDB_Rating"]);
-			})
-			
-			.attr("width", width)
-			.attr("height", height)
+					d3.select("#tooltip")
+						.select("#RT_R")
+						.text(d["Rotten_Tomatoes_Rating"]);
 
-			.on("mouseover", function(d) {
-
-				//Get this bar's x/y values, then augment for the tooltip
-/*				var xPosition = parseFloat(d3.select(this).attr("x"));
-				var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;*/
-
-				//Update the tooltip position and value
-				d3.select("#tooltip")
-/*					.style("left", xPosition + "px")
-					.style("top", yPosition + "px")*/
-
-					.select("#Title")
-					.text(d["Title"]);
-
-				d3.select("#tooltip")
-					.select("#IMDB_R")
-					.text(d["IMDB_Rating"]);
-
-				d3.select("#tooltip")
-					.select("#RT_R")
-					.text(d["Rotten_Tomatoes_Rating"]);
-
-				d3.select("#tooltip")
-					.select("#Source")
-					.text(d["Source"]);
-		   
-				//Show the tooltip
-				d3.select("#tooltip").classed("hidden", false);
-
-			   })
-			   .on("mouseout", function() {
+					d3.select("#tooltip")
+						.select("#Source")
+						.text(d["Source"]);
 			   
+					//Show the tooltip
+					d3.select("#tooltip").classed("hidden", false);
+
+				})
+
+				.on("mouseout", function() {
+				   
 					//Hide the tooltip
 					d3.select("#tooltip").classed("hidden", true);
 					
-			   })
+			    })
 
-			   .on("mouseout", function(d) {
-				   d3.select(this)
+				.on("mouseout", function(d) {
+				    d3.select(this)
 				   		.transition()
 				   		.duration(250)
 						.attr("fill", "rgb(0, 0, " + (d * 10) + ")");
-			   });		
-		
-		   	   
-
-
+				});		
 			  		
-		// creates a svg element for the x axis	
-		svg.append("g")
-			.attr("class","axis")
-			.attr("transform", "translate(0," + (svgHeight-padding) + ")")
-			.call(xAxis);
+			// creates a svg element for the x axis	
+			svg.append("g")
+				.attr("class","axis")
+				.attr("transform", "translate(0," + (svgHeight-padding) + ")")
+				.call(xAxis);
 
-		svg.append("g")
-			.attr("class","axis")
-			.attr("transform", "translate(" + padding +  ",0)")
-			.call(yAxis);		
+			svg.append("g")
+				.attr("class","axis")
+				.attr("transform", "translate(" + padding +  ",0)")
+				.call(yAxis);		
 
-		svg.append("g")
-			.attr("class","axis")
-			.attr("transform", "translate(" + 1170 + ",0)")
-			.call(yAxis2);	
+			svg.append("g")
+				.attr("class","axis")
+				.attr("transform", "translate(" + 1170 + ",0)")
+				.call(yAxis2);	
 
-	}
-})
+		}
+	})
 })
