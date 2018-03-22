@@ -67,7 +67,7 @@ circle{
 	-webkit-transition: all 0.2s;
 	transition: all 0.2s;
 	fill: none;
-	stroke-width: 2px;
+	stroke-width: 1px;
 	stroke:black;
 }
 
@@ -77,9 +77,61 @@ rect{
 	-webkit-transition: all 0.2s;
 	transition: all 0.2s;
 	fill: none;
-	stroke-width: 2px;
+	stroke-width: 1px;
 	stroke:black;
 
+}
+
+.button{
+	font-family: 'Quicksand', sans-serif;
+	font-size: .9em;	
+	font-weight: 500;
+	border-width: .5px;
+	border-radius: 7px;
+	border: solid;
+	padding: .5rem .5rem;
+	margin-right: 2rem;
+	width: 150px;
+	text-align: center;
+	display: inline-block;
+}
+
+.button:hover{
+	-moz-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+
+#IMDB_Toggle{
+	color: #f4e242;
+	background-color: #ffffff;
+}
+
+#IMDB_Toggle:hover{
+	color: #ffffff;
+	background-color: #f4e242;
+}
+
+#RT_Toggle{
+	color: #ef2828;
+	background-color: #ffffff;
+}
+
+#RT_Toggle:hover{
+	color: #ffffff;
+	background-color: #ef2828;
+}
+
+#All_Toggle{
+	color: #007fab;
+	background-color: #ffffff;
+}
+
+#All_Toggle:hover{
+	color: #ffffff;
+	background-color: #007fab;
 }
 
 #tooltip {

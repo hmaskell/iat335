@@ -44,6 +44,11 @@
   <h2>This scatter plot compares IMDB and Rotten Tomatoes Ratings with US gross income across 2000+ films.</h2>
   <p>x-axis: US Gross</p>
   <p>y-axis: IMDB Rating (squares) Rotten Tomatoes Rating (circles)</p>
+
+  <div class="button" id="IMDB_Toggle">IMDB Ratings</div>
+  <div class="button" id="RT_Toggle">RT Ratings</div>
+  <div class="button" id="All_Toggle">All Ratings</div>
+
   <section id="area1"></section>
 
   <h2>This bar chart compares the original source of a film with US gross income across 2000+ films.</h2>
@@ -51,7 +56,30 @@
   <p>y-axis: Source</p>  
   <section id="area2"></section>
   
-    
+  <script>
+
+
+
+      document.getElementById("IMDB_Toggle").addEventListener("click", IMDB_Toggler);
+      document.getElementById("RT_Toggle").addEventListener("click", RT_Toggler);
+      document.getElementById("All_Toggle").addEventListener("click", All_Toggler);
+
+    function IMDB_Toggler() {
+      d3.selectAll("circle").style("opacity", 0)
+      d3.selectAll("rect").style("opacity", 100)
+    }
+
+    function RT_Toggler() {
+      d3.selectAll("circle").style("opacity", 100)
+      d3.selectAll("rect").style("opacity", 0)
+    }
+
+    function All_Toggler() {
+      d3.selectAll("circle").style("opacity", 100)
+      d3.selectAll("rect").style("opacity", 100)
+    }
+
+  </script>
 
   <!-- References:
   https://www.sitepoint.com/a-basic-html5-template/
