@@ -1,8 +1,7 @@
 var w = 600;
 var h = 250;
 			
-	var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
-							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+	var dataset = [11, 15, 20, 18, 17, 16, 18, 25, 10, 13, 19, 21, 25, 22, 18, 5, 13, ];
 
 d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,statsdata){
 	d3.json("http://www.sfu.ca/~hmaskell/iat335/capitol-movies-clean",function(error,capitoldata){
@@ -53,24 +52,14 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 			   .attr("fill", function(d) {
 					return "rgb(0, 0, " + Math.round(d * 10) + ")";
 			   })
-			   .on("mouseover", function() {
-			   		d3.select(this)
-			   			.attr("fill", "orange");
-			   })
-			   .on("mouseout", function(d) {
-				   d3.select(this)
-				   		.transition()
-				   		.duration(250)
-						.attr("fill", "rgb(0, 0, " + (d * 10) + ")");
-			   });
-
+			  
 			//Create labels
 			svg.selectAll("text")
 			   .data(dataset)
 			   .enter()
 			   .append("text")
 			   .text(function(d) {
-			   		return statsdata;
+			   		return "Source";
 			   })
 			   .attr("text-anchor", "middle")
 			   .attr("x", function(d, i) {
@@ -81,7 +70,8 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 			   })
 			   .attr("font-family", "sans-serif")
 			   .attr("font-size", "11px")
-			   .attr("fill", "white");
+
+			   .attr("fill", "black");
 			
 	}
 })
