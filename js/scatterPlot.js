@@ -42,7 +42,7 @@ d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,s
 
 		var yAxis2 = d3.axisRight()
 			.scale(yScaleRT)
-			.ticks(9);
+			.ticks(10);
 
 		//create the svg element					
 		var svg = d3.select("#area1")
