@@ -50,12 +50,14 @@ body{
 	padding: 1rem 3rem;
 }
 
-div.bar{
-	display: inline-block;
-	width: 10px;
-	height: 75px;
-	margin-right: 4px;
-	background-color: yellow;
+.bar{
+	-moz-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	-webkit-transition: all 0.2s!important;
+	transition: all 0.2s!important;
+	fill: none;
+	stroke-width: 1px;
+	stroke:black;
 }
 
 circle:hover{
@@ -64,6 +66,10 @@ circle:hover{
 
 rect:hover{
 	fill: yellow;
+}
+
+.bar:hover{
+	fill: #007fab;
 }
 
 circle{
@@ -84,7 +90,6 @@ rect{
 	fill: none;
 	stroke-width: 1px;
 	stroke:black;
-
 }
 
 .button{
