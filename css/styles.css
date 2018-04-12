@@ -147,6 +147,16 @@ rect{
 	background-color: #007fab;
 }
 
+#Top{
+	color: #007fab;
+	background-color: #ffffff;
+}
+
+#Top:hover{
+	color: #ffffff;
+	background-color: #007fab;
+}
+
 #tooltip {
 	position: fixed;
 	right:40px;

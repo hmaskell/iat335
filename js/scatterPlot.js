@@ -186,7 +186,7 @@ function drawScatterPlot(){
 					.attr("dy", "-1em")
 					.style("text-anchor", "middle")
 					.style("font-family", "Quicksand, sans-serif")
-					.text("IMDB User Rating");
+					.text("Rotten Tomatoes Critic Score");
 
 			}
 		})

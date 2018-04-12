@@ -34,15 +34,13 @@
   
   <script src="js/scripts.js"></script>
   <header>
-    <h1>Nick & Heather - A05</h1>
+    <h1 id="top">Nick & Heather - A05</h1>
     <nav>
       <a href="#area1">Scatterplot</a>
       <a href="#area2">Barchart</a>
     </nav>
   </header>
   <h2>This scatter plot compares IMDB and Rotten Tomatoes Ratings with US gross income across 2000+ films.</h2>
-  <p>x-axis: US Gross</p>
-  <p>y-axis: IMDB Rating (squares) Rotten Tomatoes Rating (circles)</p>
 
   <div class="button" id="IMDB_Toggle">IMDB Ratings</div>
   <div class="button" id="RT_Toggle">RT Ratings</div>
@@ -53,11 +51,11 @@
   </section>
 
   <h2>This bar chart compares the original source of a film with US gross income across 2000+ films.</h2>
-  <p>x-axis: Inspirational Source of Film</p>
-  <p>y-axis: Average US Gross</p>  
   <section id="area2">
     <script>drawBarChart();</script>
   </section>
+
+  <a href="#top"><div class="button" id="All_Toggle">Back to Top</div></a>
   
   <script>
 
