@@ -4,7 +4,7 @@ function drawScatterPlot(){
 
 	//values for svg element
 	var svgWidth = 1200;  
-	var svgHeight = 1500;
+	var svgHeight = 500;
 	var padding = 50;	
 	var h = 200;
 	var radius = 4; //used for the radius of circular plot points
@@ -95,6 +95,7 @@ function drawScatterPlot(){
 					.data(capitoldata)
 					.enter()
 					.append("rect")
+					.attr("class", "square")
 					.attr("x", function(d){
 						return xScale(d["US_Gross"]);
 					})
