@@ -11,7 +11,7 @@ function drawScatterPlot(){
 	var width = 8; //used for the width of rect plot points
 	var height = 8; //used for the height of rect plot points
 
-	var margin = {top: 0, right: 0, bottom: 120, left: 100},
+	var margin = {top: 0, right: 40, bottom: 120, left: 100},
     mar_width = svgWidth - margin.left - margin.right,
     mar_height = svgHeight 
 
@@ -181,9 +181,9 @@ function drawScatterPlot(){
 				 //creates a second y axis label
 				  svg.append("text")
 					.attr("transform", "rotate(90)")
-					.attr("y", 0)
-					.attr("x", 0 - (mar_height/2))
-					.attr("dy", "1em")
+					.attr("y", -mar_width - 60)
+					.attr("x", 0 + (mar_height/2))
+					.attr("dy", "-1em")
 					.style("text-anchor", "middle")
 					.style("font-family", "Quicksand, sans-serif")
 					.text("IMDB User Rating");
