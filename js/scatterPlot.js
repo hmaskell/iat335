@@ -11,6 +11,10 @@ function drawScatterPlot(){
 	var width = 8; //used for the width of rect plot points
 	var height = 8; //used for the height of rect plot points
 
+	var margin = {top: 0, right: 0, bottom: 120, left: 100},
+    mar_width = svgWidth - margin.left - margin.right,
+    mar_height = svgHeight 
+
 
 	d3.json("data/stats-movies-clean.json",function(error,statsdata){
 		d3.json("data/capitol-movies-clean.json",function(error,capitoldata){
@@ -35,7 +39,7 @@ function drawScatterPlot(){
 			//Define the x axis, orientation and number of ticks					
 			var xAxis = d3.axisBottom()
 				.scale(xScale)
-				.ticks(20);	
+				.ticks(20, "s");	
 			
 			//Define the y axis, orientation and number of ticks						
 			var yAxis = d3.axisLeft()
@@ -155,6 +159,34 @@ function drawScatterPlot(){
 					.attr("class","axis")
 					.attr("transform", "translate(" + 1170 + ",0)")
 					.call(yAxis2);	
+
+				//creates an x axis label
+				svg.append("text")
+					.attr("transform", "translate(" + (mar_width/2) + " ," +
+														(mar_height + margin.top) + ")")
+					.style("text-anchor", "middle")
+					.style("font-family", "Quicksand, sans-serif")
+					.text("US Gross Income in USD");
+
+				 //creates a y axis label
+				  svg.append("text")
+					.attr("transform", "rotate(-90)")
+					.attr("y", 0)
+					.attr("x", 0 - (mar_height/2))
+					.attr("dy", "1em")
+					.style("text-anchor", "middle")
+					.style("font-family", "Quicksand, sans-serif")
+					.text("IMDB User Rating");
+
+				 //creates a second y axis label
+				  svg.append("text")
+					.attr("transform", "rotate(90)")
+					.attr("y", 0)
+					.attr("x", 0 - (mar_height/2))
+					.attr("dy", "1em")
+					.style("text-anchor", "middle")
+					.style("font-family", "Quicksand, sans-serif")
+					.text("IMDB User Rating");
 
 			}
 		})

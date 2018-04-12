@@ -3,7 +3,7 @@ function drawBarChart(){
 	var totalWidth = 1200;
 	var totalHeight = 600;
 				
-	var margin = {top: 0, right: 0, bottom: 120, left: 60},
+	var margin = {top: 0, right: 0, bottom: 160, left: 60},
 	    width = totalWidth - margin.left - margin.right,
 	    height = totalHeight - margin.top - margin.bottom;
 	    // width =+svg.attr("width") - margin.left - margin.right.
@@ -95,7 +95,25 @@ function drawBarChart(){
 
 				  svg2.append("g")
 				      .call(d3.axisLeft(yScale).ticks(20, "s"));
+
+				     //creates an x axis label
+				  svg2.append("text")
+					.attr("transform", "translate(" + (width/2) + " ," +
+														(height + margin.top +130) + ")")
+					.style("text-anchor", "middle")
+					.style("font-family", "Quicksand, sans-serif")
+					.text("Original Source of Inspiration");
 				
+
+				     //creates a y axis label
+				  svg2.append("text")
+					.attr("transform", "rotate(-90)")
+					.attr("y", 0 - margin.left)
+					.attr("x", 0 - (height/2))
+					.attr("dy", "1em")
+					.style("text-anchor", "middle")
+					.style("font-family", "Quicksand, sans-serif")
+					.text("Average US Gross Income in USD");
 		}
 	})
 	})
