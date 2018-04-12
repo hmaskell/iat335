@@ -24,8 +24,8 @@ function drawBarChart(){
 				.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top +")");
 
-	d3.json("data/iat335/stats-movies-clean.json",function(error,statsdata){
-		d3.json("data/iat335/capitol-movies-clean.json",function(error,capitoldata){
+	d3.json("data/stats-movies-clean.json",function(error,statsdata){
+		d3.json("data/capitol-movies-clean.json",function(error,capitoldata){
 		if(error){
 			console.log("There was an error")
 		} else{	
