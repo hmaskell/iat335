@@ -88,6 +88,19 @@ function drawScatterPlot(){
 						d3.select("#tooltip")
 							.select("#Source")
 							.text(d["Source"]);
+
+						// d3.select("#tooltip")
+						// 	.data(capitoldata)
+						// 	.select("#US_Gross")
+						// 	.text(d["US_Gross"]);
+					})
+
+					.data(capitoldata)
+					.on("mouseover", function(d) {
+						//Update the tooltip position and value
+						d3.select("#tooltip")
+							.select("#US_Gross")
+							.text(d["US_Gross"]);
 					})
 
 				//create a rect at each of the data points
