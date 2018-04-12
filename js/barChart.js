@@ -1,93 +1,69 @@
-//REFERENCE USED: Interactive Design and Visualizations by Scott Murray
-
-var svgWidth = 500;                                                                 //determines width size of new svg
-var svgHeight = 100;
-var barPad = 1;																//determines height size of new svg 	
-
-
-
-
-
-var margin = {top: 20, right: 20, bottom: 70, left: 40},
-    width = 600 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
-
-
-// set the ranges
-var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
-
-var y = d3.scale.linear().range([height, 0]);
-
-// define the axis
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom")
-
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
-
-
-// add the SVG element
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
-
+var w = 600;
+var h = 250;
+			
+	var dataset = [11, 15, 20, 18, 17, 16, 18, 25, 10, 13, 19, 21, 25, 22, 18, 5, 13, ];
 
 d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,statsdata){
 	d3.json("http://www.sfu.ca/~hmaskell/iat335/capitol-movies-clean",function(error,capitoldata){
 	if(error){
 		console.log("There was an error")
 	} else{	
-    data.forEach(function(d) {
-        d.Source = d.Source;
-        d.US_Gross = +d.US_Gross;
- });
 
-	
-  // scale the range of the data
-  x.domain(data.map(function(d) { return d.Source; }));
-  y.domain([0, d3.max(statsdata, function(d) { return d.US_Gross; })]);
+			var xScale = d3.scaleBand()
+							.domain(d3.range(dataset.length))
+							.rangeRound([0, w])
+							.paddingInner(0.05);
 
-  // add axis
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .selectAll("text")
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", "-.55em")
-      .attr("transform", "rotate(-90)" );
+			var yScale = d3.scaleLinear()
+							.domain([0, d3.max(dataset)])
+							.range([0, h]);
+			
+			//Create SVG element
+			var svg = d3.select("#area2")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
 
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 5)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Frequency");
+			//Create bars
+			svg.selectAll("rect")
+			   .data(dataset)
+			   .enter()
+			   .append("rect")
+			   .attr("x", function(d, i) {
+			   		return xScale(i);
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d);
+			   })
+			   .attr("width", xScale.bandwidth())
+			   .attr("height", function(d) {
+			   		return yScale(d);
+			   })
+			   .attr("fill", function(d) {
+					return "rgb(0, 0, " + Math.round(d * 10) + ")";
+			   })
+			  
+			//Create labels
+			svg.selectAll("text")
+			   .data(dataset)
+			   .enter()
+			   .append("text")
+			   .text(function(d) {
+			   		return "Source";
+			   })
+			   .attr("text-anchor", "middle")
+			   .attr("x", function(d, i) {
+			   		return xScale(i) + xScale.bandwidth() / 2;
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d) + 14;
+			   })
+			   .attr("font-family", "sans-serif")
+			   .attr("font-size", "11px")
 
-
-  // Add bar chart
-  svg.selectAll("rect")
-      .data(statsdata)
-    .enter().append("rect")
-      .attr("class", "rect")
-      .attr("x", function(d) { return x(d.Source); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.US_Gross); })
-      .attr("height", function(d) { return height - y(d.US_Gross); 
-
-	});
-}
+			   .attr("fill", "black");
+			
+	}
 })
 })
 
