@@ -1,7 +1,7 @@
 var w = 600;
 var h = 250;
 			
-	var dataset = [11, 15, 20, 18, 17, 16, 18, 25, 10, 13, 19, 21, 25, 22, 18, 5, 13, ];
+	//var dataset = [11, 15, 20, 18, 17, 16, 18, 25, 10, 13, 19, 21, 25, 22, 18, 5, 13, ];
 
 d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,statsdata){
 	d3.json("http://www.sfu.ca/~hmaskell/iat335/capitol-movies-clean",function(error,capitoldata){
