@@ -1,26 +1,26 @@
 function drawBarChart(){
 
-	var w = 600;
-	var h = 250;
+	var totalWidth = 1200;
+	var totalHeight = 600;
 				
-	var margin = {top: 0, right: 0, bottom: 0, left: 0},
-	    width = 1000 - margin.left - margin.right,
-	    height = 1000 - margin.top - margin.bottom;
+	var margin = {top: 0, right: 0, bottom: 120, left: 60},
+	    width = totalWidth - margin.left - margin.right,
+	    height = totalHeight - margin.top - margin.bottom;
 	    // width =+svg.attr("width") - margin.left - margin.right.
 	    // width =+svg.attr("height") - margin.top - margin.bottom;
 
 	var xScale = d3.scaleBand()
-					.range([0,width])
-					.padding(0.1);
+					.rangeRound([0,width])
+					.padding(.6);
 
 	var yScale = d3.scaleLinear()
-					.range([height,0]);
+					.rangeRound([height,0]);
 				
 	//Create SVG element
 	var svg2 = d3.select("#area2")
 				.append("svg")
-				.attr("width", width + margin.left + margin.right)
-				.attr("height", height + margin.top + margin.bottom)
+				.attr("width", totalWidth)
+				.attr("height", totalHeight)
 				.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top +")");
 
@@ -63,7 +63,7 @@ function drawBarChart(){
 					console.log(combinedData);	
 
 				xScale.domain(statsdata.map(function(d){return d["Source"]}))
-	 			yScale.domain([0, d3.max(capitoldata, function(d) { return d["US_Gross"]; })]);
+	 			yScale.domain([0, d3.max(d3.keys(combinedData), function(d) { return combinedData[d]["us_gross"]; })]);
 
 	 			console.log( d3.keys(combinedData).map( key => combinedData[key]["us_gross"] ) )
 
@@ -84,37 +84,17 @@ function drawBarChart(){
 				   .attr("height", function(d) {
 				   		return height- yScale(combinedData[d]["us_gross"]);
 				   });
-
-				    // add the x Axis
-					  svg2.append("g")
-					      .attr("transform", "translate(0," + height + ")")
-					      .call(d3.axisBottom(xScale));
-
-					  // add the y Axis
-					  svg2.append("g")
-					      .call(d3.axisLeft(yScale));
 								
-				  
+				  //create labels
+				  svg2.append("g")
+				  	  .attr("transform", "translate(0,"+height+")")
+				  	  .call(d3.axisBottom(xScale))
+				  	  .selectAll("text")
+				  	  .style("text-anchor", "end")
+				  	  .attr("transform", "rotate(-45)");
 
-				//Create labels
-				// svg2.selectAll("text")
-				//    .data(statsdata)
-				//    .enter()
-				//    .append("text")
-				//    .text(function(d) {
-				//    		return "Source";
-				//    })
-				//    .attr("text-anchor", "middle")
-				//    .attr("x", function(d, i) {
-				//    		return xScale(i) + xScale.bandwidth() / 2;
-				//    })
-				//    .attr("y", function(d) {
-				//    		return h - yScale(d) + 14;
-				//    })
-				//    .attr("font-family", "sans-serif")
-				//    .attr("font-size", "11px")
-
-				//    .attr("fill", "black");
+				  svg2.append("g")
+				      .call(d3.axisLeft(yScale).ticks(20, "s"));
 				
 		}
 	})

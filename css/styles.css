@@ -62,14 +62,17 @@ body{
 
 circle:hover{
 	fill: red;
+	cursor: pointer;
 }
 
 rect:hover{
 	fill: yellow;
+	cursor: pointer;
 }
 
 .bar:hover{
 	fill: #007fab;
+	cursor: pointer;
 }
 
 circle{
