@@ -12,8 +12,8 @@ function drawScatterPlot(){
 	var height = 8; //used for the height of rect plot points
 
 
-	d3.json("http://www.sfu.ca/~hmaskell/iat335/stats-movies-clean",function(error,statsdata){
-		d3.json("http://www.sfu.ca/~hmaskell/iat335/capitol-movies-clean",function(error,capitoldata){
+	d3.json("data/stats-movies-clean",function(error,statsdata){
+		d3.json("data/capitol-movies-clean",function(error,capitoldata){
 		if(error){
 			console.log("There was an error")
 		} else{	
