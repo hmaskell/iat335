@@ -50,31 +50,6 @@ body{
 	padding: 1rem 3rem;
 }
 
-.bar{
-	-moz-transition: all 0.2s;
-	-o-transition: all 0.2s;
-	-webkit-transition: all 0.2s!important;
-	transition: all 0.2s!important;
-	fill: none;
-	stroke-width: 1px;
-	stroke:black;
-}
-
-circle:hover{
-	fill: red;
-	cursor: pointer;
-}
-
-rect:hover{
-	fill: yellow;
-	cursor: pointer;
-}
-
-.bar:hover{
-	fill: #007fab;
-	cursor: pointer;
-}
-
 circle{
 	-moz-transition: all 0.2s;
 	-o-transition: all 0.2s;
@@ -85,7 +60,7 @@ circle{
 	stroke:black;
 }
 
-rect{
+.square{
 	-moz-transition: all 0.2s;
 	-o-transition: all 0.2s;
 	-webkit-transition: all 0.2s;
@@ -93,6 +68,31 @@ rect{
 	fill: none;
 	stroke-width: 1px;
 	stroke:black;
+}
+
+.bar{
+	-moz-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	-webkit-transition: all 0.2s!important;
+	transition: all 0.2s!important;
+	fill: #007fab;
+	stroke-width: 1px;
+	stroke:black;
+}
+
+circle:hover{
+	fill: red;
+	cursor: pointer;
+}
+
+.square:hover{
+	fill: yellow;
+	cursor: pointer;
+}
+
+.bar:hover{
+	fill: black;
+	cursor: pointer;
 }
 
 #area1 {
