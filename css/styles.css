@@ -75,7 +75,7 @@ circle{
 	-o-transition: all 0.2s;
 	-webkit-transition: all 0.2s!important;
 	transition: all 0.2s!important;
-	fill: #007fab;
+	fill: black;
 	stroke-width: 1px;
 	stroke:black;
 }
@@ -91,7 +91,7 @@ circle:hover{
 }
 
 .bar:hover{
-	fill: black;
+	fill: #007fab;
 	cursor: pointer;
 }
 
