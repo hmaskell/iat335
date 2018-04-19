@@ -9,9 +9,28 @@ function drawIMDBScatterplot(){
 	var width = 8; //used for the width of rect plot points
 	var height = 8; //used for the height of rect plot points
 
+	var sources = {
+		"Original Screenplay": "screenplay",
+		"Based on Book/Short Story": "book",
+		"Based on Play": "play",
+		"Based on Real Life Events": "life",
+		"Based on Short Film": "short",
+		"Based on Comic/Graphic Novel": "comic",
+		"Remake": "remake",
+		"Traditional/Legend/Fairytale": 'traditional',
+		"Based on TV": "tv",
+		"Compilation": "compilation",
+		"Based on Musical/Opera": "musical",
+		"Based on Game": "game",
+		"Spin-Off": "spin-off",
+		"Based on Factual Book/Article": "fact-book",
+		"Based on Magazine Article": "magazine",
+		"Disney Ride": "ride"
+	};
+
 	var margin = {top: 0, right: 40, bottom: 120, left: 100},
     mar_width = svgWidth - margin.left - margin.right,
-    mar_height = svgHeight 
+    mar_height = svgHeight;
 
 
 	d3.json("data/stats-movies-clean.json",function(error,statsdata){
@@ -19,6 +38,8 @@ function drawIMDBScatterplot(){
 		if(error){
 			console.log("There was an error")
 		} else{	
+
+
 			
 			//create variables to scale the x and y dimensions
 			var xScale = d3.scaleLog()
@@ -57,6 +78,9 @@ function drawIMDBScatterplot(){
 						return xScale(d["US_Gross"])-width/2;
 					})
 					.data(statsdata)
+					.attr("class", function(d){
+						return "square "+sources[d["Source"]];
+					})
 					.attr("y", function(d){
 						return yScaleIMDB(d["IMDB_Rating"])-height/2;
 					})
@@ -145,6 +169,25 @@ function drawRTScatterplot(){
 	var h = 200;
 	var radius = 4; //used for the radius of circular plot points
 
+	var sources = {
+		"Original Screenplay": "screenplay",
+		"Based on Book/Short Story": "book",
+		"Based on Play": "play",
+		"Based on Real Life Events": "life",
+		"Based on Short Film": "short",
+		"Based on Comic/Graphic Novel": "comic",
+		"Remake": "remake",
+		"Traditional/Legend/Fairytale": 'traditional',
+		"Based on TV": "tv",
+		"Compilation": "compilation",
+		"Based on Musical/Opera": "musical",
+		"Based on Game": "game",
+		"Spin-Off": "spin-off",
+		"Based on Factual Book/Article": "fact-book",
+		"Based on Magazine Article": "magazine",
+		"Disney Ride": "ride"
+	};
+
 	var margin = {top: 0, right: 40, bottom: 120, left: 100},
     mar_width = svgWidth - margin.left - margin.right,
     mar_height = svgHeight 
@@ -192,6 +235,9 @@ function drawRTScatterplot(){
 						return xScale(d["US_Gross"]);
 					})	
 					.data(statsdata)
+					.attr("class", function(d){
+						return "circle "+sources[d["Source"]];
+					})
 					.attr("cy", function(d){
 						return yScaleRT(d["Rotten_Tomatoes_Rating"]);
 					})

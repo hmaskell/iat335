@@ -78,7 +78,7 @@ line{
 	stroke: white;
 }
 
-circle{
+.circle{
 	-moz-transition: all 0.2s;
 	-o-transition: all 0.2s;
 	-webkit-transition: all 0.2s;
@@ -108,7 +108,7 @@ circle{
 	stroke:white;
 }
 
-circle:hover{
+.circle:hover{
 	fill: red;
 	cursor: pointer;
 	stroke: red;
@@ -315,8 +315,8 @@ circle:hover{
 }
 
 .magazine {
-	fill: #CC998D;
-	background-color: #CC998D;
+	fill: #7A8450;
+	background-color: #7A8450;
 }
 
 .ride {
