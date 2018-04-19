@@ -34,6 +34,25 @@ function drawBarChart(){
 					d["US_Gross"] = +d["US_Gross"];
 				});
 
+				var sources = {
+					"Original Screenplay": "screenplay",
+					"Based on Book/Short Story": "book",
+					"Based on Play": "play",
+					"Based on Real Life Events": "life",
+					"Based on Short Film": "short",
+					"Based on Comic/Graphic Novel": "comic",
+					"Remake": "remake",
+					"Traditional/Legend/Fairytale": 'traditional',
+					"Based on TV": "tv",
+					"Compilation": "compilation",
+					"Based on Musical/Opera": "musical",
+					"Based on Game": "game",
+					"Spin-Off": "spin-off",
+					"Based on Factual Book/Article": "fact-book",
+					"Based on Magazine Article": "magazine",
+					"Disney Ride": "ride"
+				};
+
 				var combinedData = {};
 					statsdata.forEach( function(element){
 						var source = element.Source;
@@ -72,7 +91,9 @@ function drawBarChart(){
 				   .data(d3.keys(combinedData))
 				   .enter()
 				   .append("rect")
-				   .attr("class", "bar")
+				   .attr("class", function(d){
+				   	return "bar "+sources[d];
+				   })
 				   .attr("x", function(d) {
 				   		return 0;
 				   })

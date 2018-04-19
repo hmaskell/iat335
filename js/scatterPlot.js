@@ -34,7 +34,7 @@ function drawIMDBScatterplot(){
 			//Define the x axis, orientation and number of ticks					
 			var xAxis = d3.axisBottom()
 				.scale(xScale)
-				.ticks(20, "s");	
+				.ticks(20, ".2s");	
 			
 			//Define the y axis, orientation and number of ticks						
 			var yAxis = d3.axisLeft()
@@ -42,7 +42,7 @@ function drawIMDBScatterplot(){
 				.ticks(20);
 
 			//create the svg element					
-			var svg = d3.select("#area1")
+			var svg = d3.select("#areaA")
 				.append("svg")
 				.attr("width", svgWidth)
 				.attr("height", svgHeight);
@@ -54,11 +54,11 @@ function drawIMDBScatterplot(){
 					.append("rect")
 					.attr("class", "square")
 					.attr("x", function(d){
-						return xScale(d["US_Gross"]);
+						return xScale(d["US_Gross"])-width/2;
 					})
 					.data(statsdata)
 					.attr("y", function(d){
-						return yScaleIMDB(d["IMDB_Rating"]);
+						return yScaleIMDB(d["IMDB_Rating"])-height/2;
 					})
 					
 					.attr("width", width)
@@ -170,14 +170,14 @@ function drawRTScatterplot(){
 			//Define the x axis, orientation and number of ticks					
 			var xAxis = d3.axisBottom()
 				.scale(xScale)
-				.ticks(20, "s");	
+				.ticks(20, ".2s");	
 
 			var yAxis = d3.axisLeft()
 				.scale(yScaleRT)
 				.ticks(10);
 
 			//create the svg element					
-			var svg = d3.select("#area1")
+			var svg = d3.select("#areaB")
 				.append("svg")
 				.attr("width", svgWidth)
 				.attr("height", svgHeight);
