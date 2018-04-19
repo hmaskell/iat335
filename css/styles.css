@@ -15,13 +15,19 @@ h2{
 	color: white;
 }
 
+h3{
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1em;
+	color: white;
+}
+
 p{
 	font-family: 'Quicksand', sans-serif;
 	font-size: 1em;	
 }
 
 nav {
-	margin: 4rem 0 6rem;
+	margin: 4rem 0;
 
 }
 
@@ -216,6 +222,26 @@ circle:hover{
 
 .source-div {
 	padding: 1rem;
+	font-size: 1rem;
+	display: inline-block;
+}
+
+.source-div-parent {
+	margin:0;
+	padding: 0;
+}
+
+.source-div-parent h3 {
+	display: inline-block;
+	position: relative;
+    top: -10px;
+    margin: 0;
+}
+
+.source-split {
+	display: inline-block;
+	margin-left: 1rem;
+	margin-bottom: 4rem;
 }
 
 .screenplay{
