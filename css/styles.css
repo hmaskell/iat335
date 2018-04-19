@@ -83,9 +83,9 @@ line{
 	-o-transition: all 0.2s;
 	-webkit-transition: all 0.2s;
 	transition: all 0.2s;
-	fill: none;
 	stroke-width: 1px;
 	stroke:white;
+	opacity: 80;
 }
 
 .square{
@@ -93,7 +93,6 @@ line{
 	-o-transition: all 0.2s;
 	-webkit-transition: all 0.2s;
 	transition: all 0.2s;
-	fill: none;
 	stroke-width: 1px;
 	stroke:white;
 }
@@ -109,16 +108,16 @@ line{
 }
 
 .circle:hover{
-	fill: red;
+	fill: #E6F14A;
+	stroke: #E6F14A;
 	cursor: pointer;
-	stroke: red;
 	stroke-width: 12px;
 }
 
 .square:hover{
-	fill: yellow;
+	fill: #E6F14A;
+	stroke: #E6F14A;
 	cursor: pointer;
-	stroke: yellow;
 	stroke-width: 12px;
 }
 
@@ -183,12 +182,13 @@ line{
 	background-color: #007fab;
 }
 
-#Top{
+#Top, .button{
 	color: #007fab;
 	background-color: #ffffff;
+	margin-bottom: 1rem;
 }
 
-#Top:hover{
+#Top:hover, .button:hover{
 	color: #ffffff;
 	background-color: #007fab;
 }
@@ -218,6 +218,7 @@ line{
 	font-family: sans-serif;
 	font-size: 16px;
 	line-height: 20px;
+
 }
 
 .source-div {
@@ -245,81 +246,97 @@ line{
 }
 
 .screenplay{
+	transition: all 0.2s!important;
 	fill: #F2CC8F;
 	background-color: #F2CC8F;
 } 
 
 .book{
+	transition: all 0.2s!important;
 	fill: #81B29A;
 	background-color: #81B29A;
 }
 
 .play{
+	transition: all 0.2s!important;
 	fill: #E07A5F;
 	background-color: #E07A5F;
 }
 
 .life{
+	transition: all 0.2s!important;
 	fill: #B48B7D;
 	background-color: #B48B7D;
 }
 
 .short{
+	transition: all 0.2s!important;
 	fill: #6096BA;
 	background-color: #6096BA;
 }
 
 .comic {
+	transition: all 0.2s!important;
 	fill: #363946;
 	background-color: #363946;
 }
 
 .remake {
+	transition: all 0.2s!important;
 	fill: #5C5D8D;
 	background-color: #5C5D8D;
 }
 
 .traditional {
+	transition: all 0.2s!important;
 	fill: #9CAFB7;
 	background-color: #9CAFB7;
 }
 
 .tv {
+	transition: all 0.2s!important;
 	fill: #744FC6;
 	background-color: #744FC6;
 }
 
 .compilation {
+	transition: all 0.2s!important;
 	fill: #153B50;
 	background-color: #153B50;
 }
  
 .musical {
+	transition: all 0.2s!important;
 	fill: #7F636E;
 	background-color: #7F636E;
 }
 
 .game {
+	transition: all 0.2s!important;
 	fill: #A54657;
 	background-color: #A54657;
 }
 
 .spin-off {
+	transition: all 0.2s!important;
 	fill: #582630;
 	background-color: #582630;
 }
 
 .fact-book {
+	transition: all 0.2s!important;
 	fill: #0C7C59;
 	background-color: #0C7C59;
 }
 
 .magazine {
+	transition: all 0.2s!important;
 	fill: #7A8450;
 	background-color: #7A8450;
 }
 
 .ride {
+	transition: all 0.2s!important;
 	fill: #EF959C;
 	background-color: #EF959C;
 }
