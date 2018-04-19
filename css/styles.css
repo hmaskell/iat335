@@ -187,3 +187,71 @@ circle:hover{
 	font-size: 16px;
 	line-height: 20px;
 }
+
+.source-div {
+	padding: 1rem;
+}
+
+.screenplay{
+	background-color: #F2CC8F;
+} 
+
+.book{
+	background-color: #81B29A;
+}
+
+.play{
+	background-color: #E07A5F;
+}
+
+.life{
+	background-color: #B48B7D;
+}
+
+.short{
+	background-color: #6096BA;
+}
+
+.comic {
+	background-color: #363946;
+}
+
+.remake {
+	background-color: #5C5D8D;
+}
+
+.traditional {
+	background-color: #9CAFB7;
+}
+
+.tv {
+	background-color: #F03A47;
+}
+
+.compilation {
+	background-color: #153B50;
+}
+ 
+.musical {
+	background-color: #7F636E;
+}
+
+.game {
+	background-color: #A54657;
+}
+
+.spin-off {
+	background-color: #582630;
+}
+
+.fact-book {
+	background-color: #0C7C59;
+}
+
+.magazine {
+	background-color: #CC998D;
+}
+
+.ride {
+	background-color: #F46036;
+}

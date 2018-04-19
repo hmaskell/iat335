@@ -1,20 +1,20 @@
 function drawBarChart(){
 
+	var totalHeight = 800;
 	var totalWidth = 1200;
-	var totalHeight = 600;
 				
-	var margin = {top: 0, right: 0, bottom: 160, left: 60},
+	var margin = {top: 0, right: 0, bottom: 120, left: 160},
 	    width = totalWidth - margin.left - margin.right,
 	    height = totalHeight - margin.top - margin.bottom;
 	    // width =+svg.attr("width") - margin.left - margin.right.
 	    // width =+svg.attr("height") - margin.top - margin.bottom;
 
-	var xScale = d3.scaleBand()
-					.rangeRound([0,width])
+	var yScale = d3.scaleBand()
+					.rangeRound([0,height])
 					.padding(.6);
 
-	var yScale = d3.scaleLinear()
-					.rangeRound([height,0]);
+	var xScale = d3.scaleLinear()
+					.rangeRound([0,width]);
 				
 	//Create SVG element
 	var svg2 = d3.select("#area2")
@@ -62,8 +62,8 @@ function drawBarChart(){
 					})
 					console.log(combinedData);	
 
-				xScale.domain(statsdata.map(function(d){return d["Source"]}))
-	 			yScale.domain([0, d3.max(d3.keys(combinedData), function(d) { return combinedData[d]["us_gross"]; })]);
+				yScale.domain(statsdata.map(function(d){return d["Source"]}))
+	 			xScale.domain([0, d3.max(d3.keys(combinedData), function(d) { return combinedData[d]["us_gross"]; })]);
 
 	 			console.log( d3.keys(combinedData).map( key => combinedData[key]["us_gross"] ) )
 
@@ -74,35 +74,38 @@ function drawBarChart(){
 				   .append("rect")
 				   .attr("class", "bar")
 				   .attr("x", function(d) {
-				   		return xScale(d);
+				   		return 0;
 				   })
-				   .attr("width", xScale.bandwidth())
+				   .attr("width", function(d){
+					   	return xScale(combinedData[d]["us_gross"])
+				   })
 
 				   .attr("y", function(d) {
-				   		return yScale(combinedData[d]["us_gross"]);
+				   		return yScale(d);
 				   })
 				   .attr("height", function(d) {
-				   		return height- yScale(combinedData[d]["us_gross"]);
+				   		return yScale.bandwidth();
 				   });
 								
 				  //create labels
 				  svg2.append("g")
 				  	  .attr("transform", "translate(0,"+height+")")
-				  	  .call(d3.axisBottom(xScale))
-				  	  .selectAll("text")
-				  	  .style("text-anchor", "end")
-				  	  .attr("transform", "rotate(-45)");
+				  	  .call(d3.axisBottom(xScale).ticks(20, "s"));
+
 
 				  svg2.append("g")
-				      .call(d3.axisLeft(yScale).ticks(20, "s"));
+				      .call(d3.axisLeft(yScale))
+				  	  .selectAll("text")
+				  	  .style("text-anchor", "end")
+				  	  .attr("transform", "translate(-10,-8) rotate(-45)");
 
 				     //creates an x axis label
 				  svg2.append("text")
 					.attr("transform", "translate(" + (width/2) + " ," +
-														(height + margin.top +130) + ")")
+														(height + margin.top+60) + ")")
 					.style("text-anchor", "middle")
 					.style("font-family", "Quicksand, sans-serif")
-					.text("Original Source of Inspiration");
+					.text("Average US Gross Income in USD");
 				
 
 				     //creates a y axis label
@@ -113,7 +116,7 @@ function drawBarChart(){
 					.attr("dy", "1em")
 					.style("text-anchor", "middle")
 					.style("font-family", "Quicksand, sans-serif")
-					.text("Average US Gross Income in USD");
+					.text("Original Source of Inspiration");
 		}
 	})
 	})

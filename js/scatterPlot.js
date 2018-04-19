@@ -23,8 +23,9 @@ function drawScatterPlot(){
 		} else{	
 			
 			//create variables to scale the x and y dimensions
-			var xScale = d3.scaleLinear()
-				.domain([0, d3.max(capitoldata, function(d) { return d["US_Gross"];})])
+			var xScale = d3.scaleLog()
+				.base(2)
+				.domain([10000, d3.max(capitoldata, function(d) { return d["US_Gross"];})])
 				.range([padding, svgWidth - padding]);  
 
 			var	yScaleIMDB = d3.scaleLinear()
@@ -44,7 +45,7 @@ function drawScatterPlot(){
 			//Define the y axis, orientation and number of ticks						
 			var yAxis = d3.axisLeft()
 				.scale(yScaleIMDB)
-				.ticks(9);
+				.ticks(20);
 
 			var yAxis2 = d3.axisRight()
 				.scale(yScaleRT)
@@ -75,33 +76,25 @@ function drawScatterPlot(){
 						//Update the tooltip position and value
 						d3.select("#tooltip")
 							.select("#Title")
-							.text(d["Title"]);
-
-						d3.select("#tooltip")
+							.text(d["Title"])
 							.select("#IMDB_R")
-							.text(d["IMDB_Rating"]);
-
-						d3.select("#tooltip")
+							.text(d["IMDB_Rating"])
 							.select("#RT_R")
-							.text(d["Rotten_Tomatoes_Rating"]);
-
-						d3.select("#tooltip")
+							.text(d["Rotten_Tomatoes_Rating"])
 							.select("#Source")
-							.text(d["Source"]);
-
-						// d3.select("#tooltip")
-						// 	.data(capitoldata)
-						// 	.select("#US_Gross")
-						// 	.text(d["US_Gross"]);
-					})
-
-					.data(capitoldata)
-					.on("mouseover", function(d) {
-						//Update the tooltip position and value
-						d3.select("#tooltip")
+							.text(d["Source"])
+							.data(capitoldata)
 							.select("#US_Gross")
 							.text(d["US_Gross"]);
 					})
+
+					// .data(capitoldata)
+					// .on("mouseover", function(d) {
+					// 	//Update the tooltip position and value
+					// 	d3.select("#tooltip")
+					// 		.select("#US_Gross")
+					// 		.text(d["US_Gross"]);
+					// })
 
 				//create a rect at each of the data points
 				svg.selectAll("rect")
