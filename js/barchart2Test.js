@@ -392,7 +392,7 @@ function drawBarChart(){
 					}
 				})
 
-				d3.select("#All_Toggle").on("click", function(){
+				d3.selectAll(".All_Toggle").on("click", function(){
 					screenplay_bool = true;
 					book_bool = true;
 					play_bool = true;
@@ -412,7 +412,7 @@ function drawBarChart(){
 						return d3.selectAll(".screenplay,.book,.play,.life,.short,.comic,.remake,.traditional,.tv,.compilation,.musical,.game,.spin-off,.fact-book,.magazine,.ride").style("opacity", 1);
 				})
 
-				d3.select("#None_Toggle").on("click", function(){
+				d3.selectAll(".None_Toggle").on("click", function(){
 					screenplay_bool = false;
 					book_bool = false;
 					play_bool = false;
