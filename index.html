@@ -115,16 +115,14 @@
     </div> 
   </div>
 </section>
+  <div class="button" id="All_Toggle">Select All</div>
+  <div class="button" id="None_Toggle">Deselect All</div>
   </header>
-  <h2>These scatterplots compare IMDB and Rotten Tomatoes Ratings (respectively) with US gross income across 2000+ films.</h2>
-
-<!--   <div class="button" id="IMDB_Toggle">IMDB Ratings</div>
-  <div class="button" id="RT_Toggle">RT Ratings</div>
-  <div class="button" id="All_Toggle">All Ratings</div> -->
-
+  <h2>This scatterplots compare IMDB ratings from laymen users with the US gross income for 2000+ films.</h2>
   <section id="areaA">
     <script>drawIMDBScatterplot();</script>
   </section>
+  <h2>This scatterplots compare Rotten Tomatoes ratings from movie critics with the US gross income for 2000+ films.</h2>
   <section id="areaB">
     <script>drawRTScatterplot();</script>
   </section>
@@ -135,6 +133,8 @@
   <div class="button" id="ZA_Toggle">Sort Z-A</div>
   <div class="button" id="Asc_Toggle">Sort Ascending</div>
   <div class="button" id="Des_Toggle">Sort Descending</div>
+  <div class="button" id="All_Toggle">Select All</div>
+  <div class="button" id="None_Toggle">Deselect All</div>
 
   <section id="area2">
     <script>drawBarChart();</script>
@@ -143,18 +143,18 @@
 
   <a href="#top"><div class="button" id="All_Toggle">Back to Top</div></a>
   
-  // <script>
+   <script>
 
-    // document.getElementById("AZ_Toggle").addEventListener("click", IMDB_Toggler);
+   // document.getElementsByClassName("screenplay").addEventListener("click", screenplay_toggle);
     // document.getElementById("ZA_Toggle").addEventListener("click", RT_Toggler);
     // document.getElementById("Asc_Toggle").addEventListener("click", All_Toggler);
     // document.getElementById("Des_Toggle").addEventListener("click", All_Toggler);
 
 
-  //   function IMDB_Toggler() {
-  //     d3.selectAll("circle").style("opacity", 0)
-  //     d3.selectAll(".square").style("opacity", 100)
-  //   }
+    //function screenplay_toggle() {
+    //  d3.selectAll("screenplay").style("opacity", 0.2);
+     // d3.selectAll(".square").style("opacity", 100)
+    //}
 
   //   function RT_Toggler() {
   //     d3.selectAll("circle").style("opacity", 100)
