@@ -128,7 +128,7 @@ function drawBarChart(){
 						// 	.text(d["//"])
 						d3.select("#tooltip2")
 							.select("#Avg")
-							.text(d["us_gross"])
+							.text("$"+d["us_gross"])
 
 						//Show the tooltip
 						d3.select("#tooltip2").classed("hidden", false);

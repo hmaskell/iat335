@@ -291,7 +291,7 @@ function drawRTScatterplot(tooltipData){
 							.text(tooltipData[d]["source"])
 						d3.select("#tooltip")
 							.select("#US_Gross")
-							.text(tooltipData[d]["us_gross"]);
+							.text("$"+tooltipData[d]["us_gross"]);
 
 						//Show the tooltip
 						d3.select("#tooltip").classed("hidden", false);
