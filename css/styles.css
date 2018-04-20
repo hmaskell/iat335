@@ -24,6 +24,8 @@ h3{
 p{
 	font-family: 'Quicksand', sans-serif;
 	font-size: 1em;	
+	color: white;
+	max-width: 40rem;
 }
 
 nav {
@@ -193,7 +195,53 @@ line{
 	background-color: #007fab;
 }
 
+input{
+	font-family: 'Quicksand', sans-serif;
+	font-size: .9em;	
+	font-weight: 500;
+	padding: .5rem .5rem;
+	margin-right: 2rem;
+	width: 150px;
+	text-align: center;
+	display: inline-block;
+}
+
+input[type=submit]{
+	border-width: .5px;
+	border-radius: 7px;
+	border: solid;
+	border-color: #007fab;
+}
+
+input[type=submit]:hover{
+	-moz-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+
+.form-atom {
+	display: inline-block;
+}
+
 #tooltip {
+	position: fixed;
+	right:40px;
+	width: 200px;
+	height: auto;
+	padding: 10px;
+	background-color: white;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	pointer-events: none;
+}
+
+#tooltip2 {
 	position: fixed;
 	right:40px;
 	width: 200px;
@@ -213,12 +261,25 @@ line{
 	display: none;
 }
 
+
+#tooltip2.hidden {
+	display: none;
+}
+
+#tooltip2 p {
+	margin: 0;
+	font-family: sans-serif;
+	font-size: 16px;
+	line-height: 20px;
+	color: black;
+}
+
 #tooltip p {
 	margin: 0;
 	font-family: sans-serif;
 	font-size: 16px;
 	line-height: 20px;
-
+	color: black;
 }
 
 .source-div {

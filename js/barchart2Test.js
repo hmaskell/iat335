@@ -79,7 +79,6 @@ function drawBarChart(){
 							}
 						}
 					})
-					console.log(combinedData);	
 
 				var dataArray = [];
 				// [
@@ -96,7 +95,6 @@ function drawBarChart(){
 					}
 					);
 				});
-				console.log(dataArray);
 
 				yScale.domain(statsdata.map(function(d){return d["Source"]}))
 	 			xScale.domain([0, d3.max(dataArray, function(d) { return d["us_gross"]; })]);
@@ -117,8 +115,26 @@ function drawBarChart(){
 				   .attr("y", function(d) {
 				   		return yScale(d["source"]);
 				   })
-				   .attr("height", yScale.bandwidth());
+				   .attr("height", yScale.bandwidth())
 				   
+					.on("mouseover", function(d) {
+						//Update the tooltip position and value
+						console.log(d);
+						d3.select("#tooltip2")
+							.select("#Source")
+							.text(d["source"])
+						// d3.select("#tooltip2")
+						// 	.select("#Count")
+						// 	.text(d["//"])
+						d3.select("#tooltip2")
+							.select("#Avg")
+							.text(d["us_gross"])
+
+						//Show the tooltip
+						d3.select("#tooltip2").classed("hidden", false);
+						d3.select("#tooltip").classed("hidden", true);
+					});
+
 				   var xAxis = d3.axisBottom(xScale).ticks(20, "s");
 								
 				  //create labels
@@ -197,6 +213,46 @@ function drawBarChart(){
 					sortBars(function (a,b){
 						return d3.descending(a["us_gross"],b["us_gross"]);
 					});
+				})
+
+				d3.selectAll(".All_Toggle").on("click", function(){
+					screenplay_bool = true;
+					book_bool = true;
+					play_bool = true;
+					life_bool = true;
+					short_bool = true;
+					comic_bool = true;
+					remake_bool = true;
+					traditional_bool = true;
+					tv_bool = true;
+					compilation_bool = true;
+					musical_bool = true;
+					game_bool = true;
+					spinoff_bool = true;
+					factbook_bool = true;
+					magazine_bool = true;
+					ride_bool = true;
+					return d3.selectAll(".screenplay,.book,.play,.life,.short,.comic,.remake,.traditional,.tv,.compilation,.musical,.game,.spin-off,.fact-book,.magazine,.ride").style("opacity", 1);
+				})
+
+				d3.selectAll(".None_Toggle").on("click", function(){
+					screenplay_bool = false;
+					book_bool = false;
+					play_bool = false;
+					life_bool = false;
+					short_bool = false;
+					comic_bool = false;
+					remake_bool = false;
+					traditional_bool = false;
+					tv_bool = false;
+					compilation_bool = false;
+					musical_bool = false;
+					game_bool = false;
+					spinoff_bool = false;
+					factbook_bool = false;
+					magazine_bool = false;
+					ride_bool = false;
+					return d3.selectAll(".screenplay,.book,.play,.life,.short,.comic,.remake,.traditional,.tv,.compilation,.musical,.game,.spin-off,.fact-book,.magazine,.ride").style("opacity", .2);
 				})
 
 				//linking by class
@@ -390,46 +446,6 @@ function drawBarChart(){
 						ride_bool = true;
 						return d3.selectAll(".ride").style("opacity", 1);
 					}
-				})
-
-				d3.selectAll(".All_Toggle").on("click", function(){
-					screenplay_bool = true;
-					book_bool = true;
-					play_bool = true;
-					life_bool = true;
-					short_bool = true;
-					comic_bool = true;
-					remake_bool = true;
-					traditional_bool = true;
-					tv_bool = true;
-					compilation_bool = true;
-					musical_bool = true;
-					game_bool = true;
-					spinoff_bool = true;
-					factbook_bool = true;
-					magazine_bool = true;
-					ride_bool = true;
-						return d3.selectAll(".screenplay,.book,.play,.life,.short,.comic,.remake,.traditional,.tv,.compilation,.musical,.game,.spin-off,.fact-book,.magazine,.ride").style("opacity", 1);
-				})
-
-				d3.selectAll(".None_Toggle").on("click", function(){
-					screenplay_bool = false;
-					book_bool = false;
-					play_bool = false;
-					life_bool = false;
-					short_bool = false;
-					comic_bool = false;
-					remake_bool = false;
-					traditional_bool = false;
-					tv_bool = false;
-					compilation_bool = false;
-					musical_bool = false;
-					game_bool = false;
-					spinoff_bool = false;
-					factbook_bool = false;
-					magazine_bool = false;
-					ride_bool = false;
-						return d3.selectAll(".screenplay,.book,.play,.life,.short,.comic,.remake,.traditional,.tv,.compilation,.musical,.game,.spin-off,.fact-book,.magazine,.ride").style("opacity", .2);
 				})
 
 

@@ -32,12 +32,24 @@
       <p><span id="US_Gross"></span></p>
   </div>
 
+  <div id="tooltip2" class="hidden">
+      <p><strong>Source:</strong></p>
+      <p><span id="Source"></span></p>
+
+<!--       <p><strong>Number of Films:</strong></p>
+      <p><span id="Count"></span></p> -->
+
+      <p><strong>Average Income:</strong></p>
+      <p><span id="Avg"></span></p>
+  </div>
+
   <script src="js/scatterPlot.js"></script>
   <script src="js/barchart2Test.js"></script>
   
   <script src="js/scripts.js"></script>
   <header>
     <h1 id="top">Nick & Heather's Interactive IMDB Visualization</h1>
+      <p>Hover over plot points to see information about the movies they represent. Click on items in the legend, scatterplots, and barchart to toggle their visibility across all visualizations. Sort the barchart by using the buttons above it.</p>
     <nav>
       <a href="#areaA">IMDB Scatterplot</a>
       <a href="#areaB">RT Scatterplot</a>
@@ -117,56 +129,42 @@
 </section>
   <div class="button All_Toggle">Select All</div>
   <div class="button None_Toggle">Deselect All</div>
+  <script>combineData();</script>
   </header>
-  <h2>This scatterplots compare IMDB ratings from laymen users with the US gross income for 2000+ films.</h2>
   <section id="areaA">
-    <script>drawIMDBScatterplot();</script>
+      <h2>This scatterplots compare IMDB ratings from laymen users with the US gross income for 2000+ films.</h2>
   </section>
-  <h2>This scatterplots compare Rotten Tomatoes ratings from movie critics with the US gross income for 2000+ films.</h2>
+
+<!-- <form id="domainForm" action="">
+  <div class="form-atom"><h3>Min US Gross:</h3> <input type="number" name="min_US_Gross"></div>
+  <div class="form-atom"><h3>Max US Gross:</h3> <input type="number" name="max_US_Gross"></div>
+  <button onclick="updateDomain()"></button>
+</form> -->
+
+<script>
+function updateDomain() {
+    var x = document.getElementById("domainForm");
+    console.log("x is "+x);
+}
+</script>
+
   <section id="areaB">
-    <script>drawRTScatterplot();</script>
+      <h2>This scatterplot compares Rotten Tomatoes ratings from movie critics with the US gross income for 2000+ films.</h2>
   </section>
-
-  <h2>This bar chart compares the original source of a film with US gross income across 2000+ films.</h2>
-
-  <div class="button" id="AZ_Toggle">Sort A-Z</div>
-  <div class="button" id="ZA_Toggle">Sort Z-A</div>
-  <div class="button" id="Asc_Toggle">Sort Ascending</div>
-  <div class="button" id="Des_Toggle">Sort Descending</div>
-  <div class="button All_Toggle">Select All</div>
-  <div class="button None_Toggle">Deselect All</div>
 
   <section id="area2">
+    <h2>This bar chart compares the original source of a film with US gross income across 2000+ films.</h2>
+    <div class="button" id="AZ_Toggle">Sort A-Z</div>
+    <div class="button" id="ZA_Toggle">Sort Z-A</div>
+    <div class="button" id="Asc_Toggle">Sort Ascending</div>
+    <div class="button" id="Des_Toggle">Sort Descending</div>
+    <div class="button All_Toggle">Select All</div>
+    <div class="button None_Toggle">Deselect All</div>
     <script>drawBarChart();</script>
   </section>
 
 
   <a href="#top"><div class="button" id="All_Toggle">Back to Top</div></a>
-  
-   <script>
-
-   // document.getElementsByClassName("screenplay").addEventListener("click", screenplay_toggle);
-    // document.getElementById("ZA_Toggle").addEventListener("click", RT_Toggler);
-    // document.getElementById("Asc_Toggle").addEventListener("click", All_Toggler);
-    // document.getElementById("Des_Toggle").addEventListener("click", All_Toggler);
-
-
-    //function screenplay_toggle() {
-    //  d3.selectAll("screenplay").style("opacity", 0.2);
-     // d3.selectAll(".square").style("opacity", 100)
-    //}
-
-  //   function RT_Toggler() {
-  //     d3.selectAll("circle").style("opacity", 100)
-  //     d3.selectAll(".square").style("opacity", 0)
-  //   }
-
-  //   function All_Toggler() {
-  //     d3.selectAll("circle").style("opacity", 100)
-  //     d3.selectAll(".square").style("opacity", 100)
-  //   }
-
-  // </script>
 
   <!-- References:
   https://www.sitepoint.com/a-basic-html5-template/

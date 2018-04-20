@@ -1,6 +1,40 @@
 //REFERENCE USED: Interactive Design and Visualizations by Scott Murray
+function combineData(){
+	d3.json("data/stats-movies-clean.json",function(error,statsdata){
+		d3.json("data/capitol-movies-clean.json",function(error,capitoldata){
+		if(error){
+			console.log("There was an error")
+		} else{	
+			var tooltipData = {};
+				statsdata.forEach( function(movie){
+					var title = movie["Title"];
+					var IMDB = movie["IMDB_Rating"];
+					var RT = movie["Rotten_Tomatoes_Rating"];
+					var source = movie["Source"];
+					tooltipData[title]= {
+						title: title,
+						IMDB: IMDB,
+						RT: RT,
+						source: source
+					}
+				});
 
-function drawIMDBScatterplot(){
+				capitoldata.forEach( function(element){
+					d3.keys(tooltipData).forEach( function(movie){
+						if (movie == element["Title"]){
+							var us_gross = element["US_Gross"];
+							tooltipData[movie]["us_gross"] = us_gross;
+						}
+					})
+				});
+				drawIMDBScatterplot(tooltipData);
+				drawRTScatterplot(tooltipData);
+			}
+		})
+	})
+}
+
+function drawIMDBScatterplot(tooltipData){
 	//values for svg element
 	var svgWidth = 1200;  
 	var svgHeight = 500;
@@ -32,23 +66,19 @@ function drawIMDBScatterplot(){
     mar_width = svgWidth - margin.left - margin.right,
     mar_height = svgHeight;
 
+	console.log(tooltipData);
 
-	d3.json("data/stats-movies-clean.json",function(error,statsdata){
-		d3.json("data/capitol-movies-clean.json",function(error,capitoldata){
-		if(error){
-			console.log("There was an error")
-		} else{	
-
-
+			var xDomainLow = 10000;
+			var xDomainHigh = d3.max(d3.keys(tooltipData), function(d) { return tooltipData[d]["us_gross"];});
 			
 			//create variables to scale the x and y dimensions
 			var xScale = d3.scaleLog()
 				.base(2)
-				.domain([10000, d3.max(capitoldata, function(d) { return d["US_Gross"];})])
+				.domain([xDomainLow, xDomainHigh])
 				.range([padding, svgWidth - padding]);  
 
 			var	yScaleIMDB = d3.scaleLinear()
-				.domain([0, d3.max(statsdata, function(d) { return d["IMDB_Rating"]; })])
+				.domain([0, 10])
 				.range([svgHeight - padding, padding]);     //output range will have 50 pixels of space around the edges
 
 					
@@ -62,6 +92,13 @@ function drawIMDBScatterplot(){
 				.scale(yScaleIMDB)
 				.ticks(20);
 
+			d3.keys(tooltipData).forEach( function(d){
+				if (tooltipData[d]["us_gross"] == undefined){
+					console.log(tooltipData[d]);
+				}
+
+			})
+
 			//create the svg element					
 			var svg = d3.select("#areaA")
 				.append("svg")
@@ -70,19 +107,19 @@ function drawIMDBScatterplot(){
 
 				//create a rect at each of the data points
 				svg.selectAll("rect")
-					.data(capitoldata)
+					.data(d3.keys(tooltipData))
 					.enter()
 					.append("rect")
 					.attr("class", "square")
 					.attr("x", function(d){
-						return xScale(d["US_Gross"])-width/2;
+						//console.log(xScale(tooltipData[d]["us_gross"])-width/2);
+						return xScale(tooltipData[d]["us_gross"])-width/2;
 					})
-					.data(statsdata)
 					.attr("class", function(d){
-						return "square "+sources[d["Source"]];
+						return "square "+sources[tooltipData[d]["source"]];
 					})
 					.attr("y", function(d){
-						return yScaleIMDB(d["IMDB_Rating"])-height/2;
+						return yScaleIMDB(tooltipData[d]["IMDB"])-height/2;
 					})
 					
 					.attr("width", width)
@@ -93,22 +130,27 @@ function drawIMDBScatterplot(){
 						//Update the tooltip position and value
 						d3.select("#tooltip")
 							.select("#Title")
-							.text(d["Title"]);
+							.text(tooltipData[d]["title"]);
 
 						d3.select("#tooltip")
 							.select("#IMDB_R")
-							.text(d["IMDB_Rating"]);
+							.text(tooltipData[d]["IMDB"]);
 
 						d3.select("#tooltip")
 							.select("#RT_R")
-							.text(d["Rotten_Tomatoes_Rating"]);
+							.text(tooltipData[d]["RT"]);
 
 						d3.select("#tooltip")
 							.select("#Source")
-							.text(d["Source"]);
+							.text(tooltipData[d]["source"]);
+
+						d3.select("#tooltip")
+							.select("#US_Gross")
+							.text("$"+tooltipData[d]["us_gross"]);
 				   
 						//Show the tooltip
 						d3.select("#tooltip").classed("hidden", false);
+						d3.select("#tooltip2").classed("hidden", true);
 
 					})
 
@@ -156,12 +198,10 @@ function drawIMDBScatterplot(){
 					.text("IMDB User Rating");
 
 			}
-		})
-	})
-}
 
 
-function drawRTScatterplot(){
+
+function drawRTScatterplot(tooltipData){
 	//values for svg element
 	var svgWidth = 1200;  
 	var svgHeight = 500;
@@ -191,22 +231,15 @@ function drawRTScatterplot(){
 	var margin = {top: 0, right: 40, bottom: 120, left: 100},
     mar_width = svgWidth - margin.left - margin.right,
     mar_height = svgHeight 
-
-
-	d3.json("data/stats-movies-clean.json",function(error,statsdata){
-		d3.json("data/capitol-movies-clean.json",function(error,capitoldata){
-		if(error){
-			console.log("There was an error")
-		} else{	
 			
 			//create variables to scale the x and y dimensions
 			var xScale = d3.scaleLog()
 				.base(2)
-				.domain([10000, d3.max(capitoldata, function(d) { return d["US_Gross"];})])
+				.domain([10000, d3.max(d3.keys(tooltipData), function(d) { return tooltipData[d]["us_gross"];})])
 				.range([padding, svgWidth - padding]);  
 
 			var	yScaleRT = d3.scaleLinear()
-				.domain([0, d3.max(statsdata, function(d) { return d["Rotten_Tomatoes_Rating"]; })])
+				.domain([0, d3.max(d3.keys(tooltipData), function(d) { return tooltipData[d]["RT"]; })])
 				.range([svgHeight - padding, padding]);     //output range will have 50 pixels of space around the edges
 
 					
@@ -228,18 +261,17 @@ function drawRTScatterplot(){
 
 				//create a circle at each of the data points
 				svg.selectAll("circle")
-					.data(capitoldata)
+					.data(d3.keys(tooltipData))
 					.enter()
 					.append("circle")
 					.attr("cx", function(d){
-						return xScale(d["US_Gross"]);
+						return xScale(tooltipData[d]["us_gross"]);
 					})	
-					.data(statsdata)
 					.attr("class", function(d){
-						return "circle "+sources[d["Source"]];
+						return "circle "+sources[tooltipData[d]["source"]];
 					})
 					.attr("cy", function(d){
-						return yScaleRT(d["Rotten_Tomatoes_Rating"]);
+						return yScaleRT(tooltipData[d]["RT"]);
 					})
 					.attr("r", radius)
 								
@@ -247,16 +279,24 @@ function drawRTScatterplot(){
 						//Update the tooltip position and value
 						d3.select("#tooltip")
 							.select("#Title")
-							.text(d["Title"])
+							.text(tooltipData[d]["title"])
+						d3.select("#tooltip")
 							.select("#IMDB_R")
-							.text(d["IMDB_Rating"])
+							.text(tooltipData[d]["IMDB"])
+						d3.select("#tooltip")
 							.select("#RT_R")
-							.text(d["Rotten_Tomatoes_Rating"])
+							.text(tooltipData[d]["RT"])
+						d3.select("#tooltip")
 							.select("#Source")
-							.text(d["Source"])
-							.data(capitoldata)
+							.text(tooltipData[d]["source"])
+						d3.select("#tooltip")
 							.select("#US_Gross")
-							.text(d["US_Gross"]);
+							.text(tooltipData[d]["us_gross"]);
+
+						//Show the tooltip
+						d3.select("#tooltip").classed("hidden", false);
+						d3.select("#tooltip2").classed("hidden", true);
+
 					})
 
 				  		
@@ -290,6 +330,3 @@ function drawRTScatterplot(){
 					.text("Rotten Tomatoes Critic Score");
 
 			}
-		})
-	})
-}
